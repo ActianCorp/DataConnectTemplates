@@ -1,7 +1,7 @@
 # AvalancheConnect Data Loading Templates
 
 ## Overview
-[Actian DataConnect](https://www.actian.com/data-integration/dataconnect-integration/) Templates allow users to quickly get started with pre-built, runnable integration process designs. These functional templates are process designs that perform operations such as loading data into database/warehouses from different sources or more complex integration workflow patterns involving multiple systems. This repository contains pre-built DataConnect Template packages that can be deployed on Actian Integration Manager or can be executed using an Actian DataConnect Engine. 
+[AvalancheConnect](https://www.actian.com/data-integration/dataconnect-integration/) Templates allow users to quickly get started with pre-built, runnable integration process designs. These functional templates are process designs that perform operations such as loading data into database/warehouses from different sources or more complex integration workflow patterns involving multiple systems. This repository contains pre-built DataConnect Template packages that can be deployed on Actian Integration Manager or can be executed using an Actian DataConnect Engine. 
 
 ## Usage
 To run the templates from Avalanche:
