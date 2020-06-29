@@ -1,4 +1,18 @@
 # Changelog
+## [3.0] - 06/29/2020
+
+### Added
+- Delimited_GoogleDrive_to_Avalanche_AWS template.
+- Delimited_GoogleDrive_to_Avalanche_Azure template.
+- Netsuite_to_Avalanche_AWS template.
+- Netsuite_to_Avalanche_Azure template.
+- ServiceNow_to_Avalanche_AWS template.
+- ServiceNow_to_Avalanche_Azure template.
+- COL_SIZE_XXX macro added as a optional macro.
+
+### Changed
+
+- Quote field names in table creation query.
 
 ## [2.0] - 06/18/2020
 

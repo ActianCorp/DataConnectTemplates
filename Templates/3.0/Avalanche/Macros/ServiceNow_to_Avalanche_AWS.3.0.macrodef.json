@@ -1,0 +1,81 @@
+{
+  "macroSet" : [ {
+    "id" : 1,
+    "name" : "GLOBAL",
+    "macros" : {
+      "macro" : [ {
+        "id" : 1,
+        "name" : "AWS_BUCKET_NAME",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the AWS storage bucket to pull the data from"
+      }, {
+        "id" : 2,
+        "name" : "AWS_ACCESS_KEY",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Credentials used to access AWS services."
+      }, {
+        "id" : 3,
+        "name" : "AWS_SECRET_KEY",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Credentials used to access AWS services."
+      }, {
+        "id" : 4,
+        "name" : "AWS_REGION",
+        "value" : "US East (Ohio)",
+        "encryptValue" : false,
+        "description" : "Required. Location where the bucket lies. Must be a region id for e.g. us-east-2, ap-south-1 or region name for e.g. US East (Ohio), Europe (Frankfurt). See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html for a list of regions."
+      }, {
+        "id" : 5,
+        "name" : "SERVICENOW_URL",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. URL of the ServiceNow instance. For e.g. https://myorg.service-now.com"
+      }, {
+        "id" : 6,
+        "name" : "SERVICENOW_USERNAME",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Username for accessing ServiceNow instance."
+      }, {
+        "id" : 7,
+        "name" : "SERVICENOW_PASSWORD",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Password for accessing ServiceNow instance."
+      }, {
+        "id" : 8,
+        "name" : "SERVICENOW_TABLE",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the table in ServiceNow."
+      }, {
+        "id" : 9,
+        "name" : "AVALANCHE_CONNECT_STRING",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. ODBC Connection string for connecting to Avalanche database. You can obtain this information from Avalanche portal."
+      }, {
+        "id" : 10,
+        "name" : "AVALANCHE_USERNAME",
+        "value" : "dbuser",
+        "encryptValue" : false,
+        "description" : "Required. Username for connecting to the database using the ODBC DSN."
+      }, {
+        "id" : 11,
+        "name" : "AVALANCHE_PASSWORD",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Password for connecting to the database using the ODBC DSN."
+      }, {
+        "id" : 12,
+        "name" : "AVALANCHE_TABLE",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      } ]
+    }
+  } ]
+}
