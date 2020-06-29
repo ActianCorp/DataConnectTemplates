@@ -5,7 +5,7 @@
 
 ## Usage
 To run the templates from Avalanche:
- - Download the latest version of the djar from the respective project folder in the repository. For example, you can download latest version of **Avalanche DataLoading Templates** from [here](Templates/2.0/Avalanche/)
+ - Download the latest version of the djar from the respective project folder in the repository. For example, you can download latest version of **Avalanche DataLoading Templates** from [here](Templates/3.0/Avalanche/)
  - Create a new configuration from the Integrations tab in Avalanche. Provide a name for your configuration and click create.
  - From the summary page, click the Package Uploaded field. When the Upload Packages & Files dialog appears, drag and drop the desired package (djar) from the templates zip file into the upload files dialog when prompted, then click done. 
  - Now click the Entry Point field and select the process.rtc file associated with your template
@@ -24,23 +24,25 @@ To run the templates from Integration Manager:
 
 ## Versions
 
-| Template Version              | DataConnect Version|
-| ------------------------------|--------------------|
-| [1.0](Templates/1.0)          | >= 11.5.2-46       |
-| [2.0 (latest)](Templates/2.0) | >= 11.5.2-65       |
+| Template Version   | DataConnect Version|
+| ----------------   |--------------------|
+| [1.0](Templates/1.0) | >= 11.5.2-46     |
+| [2.0](Templates/2.0) | >= 11.5.2-65     |
+| [3.0 (latest)](Templates/3.0) | >= 11.5.2-65|
 
 ## Project Structure
 ```
 README.md
+CHANGELOG.md
 Templates
     1.0 (version)
         Avalanche (project)
             Packages
-                Package1.1.0.djar
-                Package2.1.0.djar
+                Delimited_S3_to_Avalanche_AWS.1.0.djar
+                Salesforce_to_Avalanche_AWS.1.0.djar
             Macros
-                Macros1.1.0.json
-                Macros2.1.0.json
+                Delimited_S3_to_Avalanche_AWS.1.0.json
+                Salesforce_to_Avalanche_AWS.1.0.json
             README.md
         XYZ (project)
             Packages
