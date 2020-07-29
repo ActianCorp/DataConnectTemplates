@@ -1,4 +1,12 @@
 # Changelog
+## [4.0] - 07/29/2020
+
+### Added
+- Added design-templates.json for guided workflow.
+- Added Guided workflow UI resources for templates i.e. Manifests, Icons.
+- Added TRUNCATION_HANDLING macro for truncation handling in Salesforce/ServiceNow/Netsuite templates.
+- Google drive template bug fixes.
+
 ## [3.0] - 06/29/2020
 
 ### Added
@@ -37,3 +45,5 @@
 
 [1.0]: Templates/1.0
 [2.0]: Templates/2.0
+[3.0]: Templates/3.0
+[4.0]: Templates/4.0

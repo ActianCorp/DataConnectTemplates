@@ -422,6 +422,7 @@ Following optional macros are supported by NetSuite templates in addition to the
 | \$(COPYVW_PARALLEL_LOAD_SIZE)      | Number of chunks to load in parallel using COPY VWLOAD. The default value is 20.  |
 | \$(AVALANCHE_DBADMIN_GROUP_ACCESS) | Assign table access to for the dbadmingrp group. Only applicable when new table is created. Default is True. |
 |COL_SIZE_XXX|Individual column sizes can be specified by defining macros in the form COL_SIZE_XXX where 'XXX' is the source field name in uppercase. This is only applicable for fields of text type.|
+|TRUNCATION_HANDLING|Specifies truncation handling for text data. Following values are supported. "ignore" - Ignores the truncation and continues the execution. "warn" - Logs a warning about truncation and continues the execution. "error" - Logs an error message and aborts the execution. Default is "ignore".|
 
 ## AWS S3 Macros
 

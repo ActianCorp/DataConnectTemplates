@@ -5,7 +5,7 @@
 
 ## Usage
 To run the templates from Avalanche:
- - Download the latest version of the djar from the respective project folder in the repository. For example, you can download latest version of **Avalanche DataLoading Templates** from [here](Templates/3.0/Avalanche/)
+ - Download the latest version of the djar from the respective project folder in the repository. For example, you can download latest version of **Avalanche DataLoading Templates** from [here](Templates/4.0/Avalanche/)
  - Create a new configuration from the Integrations tab in Avalanche. Provide a name for your configuration and click create.
  - From the summary page, click the Package Uploaded field. When the Upload Packages & Files dialog appears, drag and drop the desired package (djar) from the templates zip file into the upload files dialog when prompted, then click done. 
  - Now click the Entry Point field and select the process.rtc file associated with your template
@@ -15,7 +15,7 @@ To run the templates from Avalanche:
  - Click on the Details tab in upper right hand corner. This will take you back to the summary page where you will find the Run Configuration button in the upper right hand corner. This button will execute your job. 
  
 To run the templates from Integration Manager:
- - Download the latest version of the djar from the respective project folder in the repository. For example, you can download latest version of **Avalanche DataLoading Templates** from [here](Templates/2.0/Avalanche/)
+ - Download the latest version of the djar from the respective project folder in the repository. For example, you can download latest version of **Avalanche DataLoading Templates** from [here](Templates/4.0/Avalanche/)
  - Create a configuration on Actian Integration Manager instance using the downloaded djar. This step doesn't apply if you will directly run the template with Actian DataConnect Engine.
  - Configure the macros applicable for the template and run it.
    > Macros are symbolic name-value pairs that allow you to provide the input parameters such as URLs, user names and passwords required at runtime without making any changes to the integration. More information about specific macros applicable for the template can be found in the respective template's documentation.
@@ -24,11 +24,12 @@ To run the templates from Integration Manager:
 
 ## Versions
 
-| Template Version   | DataConnect Version|
-| ----------------   |--------------------|
-| [1.0](Templates/1.0) | >= 11.5.2-46     |
-| [2.0](Templates/2.0) | >= 11.5.2-65     |
-| [3.0 (latest)](Templates/3.0) | >= 11.5.2-65|
+| Template Version     | DataConnect Version   |
+| -------------------- | ----------------------|
+| [1.0](Templates/1.0) | >= 11.5.2-46          |
+| [2.0](Templates/2.0) | >= 11.5.2-65          |
+| [3.0](Templates/3.0) | >= 11.5.2-65          |
+| [4.0 (latest)](Templates/4.0) | >= 11.5.2-70 |
 
 ## Project Structure
 ```
