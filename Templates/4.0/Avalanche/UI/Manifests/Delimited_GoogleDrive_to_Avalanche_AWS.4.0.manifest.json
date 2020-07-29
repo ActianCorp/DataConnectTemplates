@@ -1,0 +1,309 @@
+{
+  "ui" : {
+    "pageInfo" : {
+      "delimited-googledrive-source" : {
+        "image" : "google-drive.svg",
+        "group" : "source",
+        "paramGroups" : [ {
+          "name" : "default",
+          "label" : "Google Drive Source",
+          "fields" : [ {
+            "name" : "FILE_LIST",
+            "label" : "File names from Google Drive",
+            "type" : "tags",
+            "alias" : "Source File List",
+            "description" : "List of input files in the Google Drive. Files must have the same schema.",
+            "validators" : {
+              "required" : true
+            },
+            "extraInfo" : {
+              "tagSeparator" : ","
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "additional_props_label",
+            "label" : "Additional Properties",
+            "type" : "label"
+          }, {
+            "name" : "HEADER",
+            "label" : "Includes Header",
+            "type" : "radio",
+            "defaultValue" : true
+          }, {
+            "name" : "FIELD_SEPARATOR",
+            "type" : "ecombo",
+            "label" : "Field Separator",
+            "defaultValue" : "",
+            "description" : "Delimiter used in the input files to separate fields.",
+            "data" : [ {
+              "label" : "Auto-Detect",
+              "value" : ""
+            }, {
+              "label" : "Comma (,)",
+              "value" : ","
+            }, {
+              "label" : "Pipe (|)",
+              "value" : "|"
+            }, {
+              "label" : "Tab",
+              "value" : "tab"
+            }, {
+              "label" : "Space",
+              "value" : "space"
+            } ]
+          }, {
+            "name" : "RECORD_SEPARATOR",
+            "type" : "ecombo",
+            "label" : "Record Separator",
+            "defaultValue" : "",
+            "description" : "Delimiter used in the input files to separate records.",
+            "data" : [ {
+              "label" : "Auto-Detect",
+              "value" : ""
+            }, {
+              "label" : "CR-LF",
+              "value" : "CR-LF"
+            }, {
+              "label" : "LF",
+              "value" : "LF"
+            }, {
+              "label" : "LF-CR",
+              "value" : "LF-CR"
+            }, {
+              "label" : "CR",
+              "value" : "CR"
+            }, {
+              "label" : "FF",
+              "value" : "FF"
+            } ]
+          }, {
+            "name" : "QUOTE_CHARACTERS",
+            "type" : "ecombo",
+            "label" : "Quote Character",
+            "defaultValue" : "",
+            "description" : "Character used to quote fields.",
+            "data" : [ {
+              "label" : "Auto-Detect",
+              "value" : ""
+            }, {
+              "label" : "Double Quote (\")",
+              "value" : "\""
+            }, {
+              "label" : "Single Quote (')",
+              "value" : "'"
+            } ]
+          }, {
+            "name" : "token_folder_label",
+            "label" : "Stored Credential File",
+            "type" : "label"
+          }, {
+            "name" : "TOKEN_FILE_HOLDER",
+            "label" : "Google Drive Security Token File",
+            "type" : "file",
+            "exclude" : true,
+            "alias" : "Token Folder",
+            "description" : "",
+            "validators" : {
+              "required" : true
+            },
+            "extraInfo" : {
+              "tagSeparator" : ","
+            },
+            "defaultValue" : ""
+          } ]
+        } ],
+        "id" : "delimited-googledrive-source"
+      },
+      "aws-s3-connection-staging" : {
+        "title" : "Set Staging Information",
+        "group" : "staging",
+        "image" : "warehouse_aws.svg",
+        "paramGroups" : [ {
+          "name" : "default",
+          "label" : "AWS Connection",
+          "description" : "This information is required as the template temporarily stages data on AWS S3 bucket for faster data loading using COPY VWLOAD functionality of Avalanche.",
+          "fields" : [ {
+            "name" : "AWS_BUCKET_NAME",
+            "label" : "S3 Bucket Name",
+            "description" : "Name of the S3 bucket which contains the data files.",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "AWS_REGION",
+            "label" : "AWS Region",
+            "type" : "combo",
+            "description" : "Name of the Region where the S3 bucket exists. This must be the same region where the warehouse exists.",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "aws-regions-api"
+            },
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : "US East (Ohio)"
+          }, {
+            "name" : "AWS_ACCESS_KEY",
+            "label" : "AWS Access Key",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "AWS_SECRET_KEY",
+            "label" : "AWS Secret Key",
+            "type" : "secret",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : ""
+          } ]
+        } ],
+        "id" : "aws-s3-connection-staging"
+      },
+      "avalanche-aws-target-connection" : {
+        "title" : "Set Target Information",
+        "image" : "Actian_a_colored.svg",
+        "group" : "target",
+        "paramGroups" : [ {
+          "name" : "default",
+          "label" : "Actian Avalanche Connection",
+          "fields" : [ {
+            "name" : "AVALANCHE_CONNECT_STRING",
+            "label" : "Select Avalanche Warehouse",
+            "badge" : "Warehouse",
+            "type" : "combo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "warehouse-list",
+              "valueProperty" : "odbc",
+              "filterValue" : "AWS"
+            },
+            "validators" : {
+              "required" : true,
+              "field_compare" : {
+                "value" : {
+                  "field" : {
+                    "name" : "AWS_REGION"
+                  },
+                  "selfProperty" : "RegionId"
+                },
+                "message" : "Avalanche warehouse and the S3 bucket should be in the same region."
+              }
+            },
+            "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
+            "defaultValue" : ""
+          }, {
+            "name" : "AVALANCHE_USERNAME",
+            "label" : "Username",
+            "defaultValue" : "dbuser",
+            "description" : "Avalanche database username used to connect to the database. The default user is dbuser."
+          }, {
+            "name" : "AVALANCHE_PASSWORD",
+            "label" : "Password",
+            "type" : "secret",
+            "required" : true,
+            "description" : "Connection database password used to connect to the database.",
+            "defaultValue" : ""
+          }, {
+            "name" : "AVALANCHE_TABLE",
+            "label" : "Table",
+            "validators" : {
+              "required" : true
+            },
+            "description" : "Avalanche table name where data will be written to.",
+            "defaultValue" : ""
+          }, {
+            "name" : "OUTPUT_MODE",
+            "label" : "Output Mode",
+            "type" : "combo",
+            "defaultValue" : "append",
+            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nTruncate & Append: Truncates the table before inserting.\nReplace: Drops & Creates the table",
+            "data" : [ {
+              "label" : "Append",
+              "value" : "append"
+            }, {
+              "label" : "Replace",
+              "value" : "replace"
+            }, {
+              "label" : "Truncate And Append",
+              "value" : "delete_append"
+            } ]
+          }, {
+            "name" : "AVALANCHE_DBADMIN_GROUP_ACCESS",
+            "label" : "Provide table access in Avalanche Query Editor",
+            "type" : "checkbox",
+            "description" : "This option grants new table access to the 'dbadmingrp' group.",
+            "defaultValue" : true
+          }, {
+            "name" : "create_table_query_checkbox",
+            "exclude" : true,
+            "label" : "Specify optional table creation query file",
+            "type" : "checkbox",
+            "description" : "The template will automatically create the table. If you would like to use a custom create query statement, provide a file containing the create table query. The partitioning must be specified. The table name in the statement must match the table name above."
+          }, {
+            "name" : "AVALANCHE_CREATE_TABLE_QUERY",
+            "label" : "Create Table Query",
+            "type" : "file",
+            "extraInfo" : {
+              "filePrefix" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "create_table_query_checkbox",
+                "value" : "true"
+              } ],
+              "action" : "DISPLAY"
+            },
+            "description" : "Specify a create table statement to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above."
+          } ]
+        } ],
+        "id" : "avalanche-aws-target-connection"
+      }
+    },
+    "wizardPages" : [ "delimited-googledrive-source", "aws-s3-connection-staging", "avalanche-aws-target-connection" ]
+  },
+  "advanceMacros" : [ {
+    "name" : "AVALANCHE_CREATE_TABLE_QUERY",
+    "description" : "Create table statement to use for creating the table. Make sure partitioning is specified. Table name in the query should match the value of AVALANCHE_TABLE macro."
+  }, {
+    "name" : "AVALANCHE_CREATE_TABLE_OPTIONS",
+    "description" : "Use this option when you don't want to build the whole query but just want to specify options to pass in the \"with\" clause of create table query. This macro is ignored if AVALANCHE_CREATE_TABLE_QUERY macro is defined. Make sure partitioning is specified."
+  }, {
+    "name" : "FIELD_SEPARATOR",
+    "description" : "Delimiter used in the source files to separate the fields. Note that you may have to specify RECORD_SEPARATOR as well."
+  }, {
+    "name" : "RECORD_SEPARATOR",
+    "description" : "Delimiter used in the source files to separate the data records. Note that you may have to specify FIELD_SEPARATOR as well."
+  }, {
+    "name" : "QUOTE_CHARACTERS",
+    "description" : "character used to quote fields. for e.g. a double quote \".  use two characters if start and end quote characters are different. for e.g. []. Note that you may have to specify RECORD_SEPARATOR and FIELD_SEPARATOR macros as well."
+  }, {
+    "name" : "SAMPLE_SIZE",
+    "description" : "Number of records to sample for building the source schema."
+  }, {
+    "name" : "OUTPUT_MODE",
+    "description" : "What table operations need to be performed before inserting data. Following options are available. \"replace\": Drops/Creates table, \"delete_append\": Truncates table before inserting. \"append\": Creates table only if doesn't exist and inserts records. Default is \"append\"."
+  }, {
+    "name" : "DEFAULT_TEXT_COL_SIZE",
+    "description" : "Set the default size of the text columns in the table. Set it to a reasonable value based on your data to avoid truncation."
+  }, {
+    "name" : "UNICODE_CHARS",
+    "description" : "Tells whether the data contains unicode characters. Value can be True or False. If True, nvarchar data type is used for text columns."
+  }, {
+    "name" : "SOURCE_FETCH_SIZE",
+    "description" : "Size of data in bytes to fetch from the source file in the Google Drive. Default is 15000000 (15MB)."
+  } ],
+  "metaData" : {
+    "owner" : "ACTIAN"
+  },
+  "id" : "Delimited_GoogleDrive_to_Avalanche_AWS",
+  "name" : "Delimited GoogleDrive to Avalanche AWS",
+  "lastModified" : 1594633828820,
+  "version" : "4.0",
+  "entryPoint" : "Avalanche-4.0/Delimited_GoogleDrive_to_Avalanche_AWS.process.rtc",
+  "project" : "Avalanche",
+  "description" : "This template is used to quickly load large data files from Google Drive into Avalanche warehouse running on AWS platform. ",
+  "minimumRuntimeVersion" : "11.5.2-70"
+}
