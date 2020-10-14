@@ -16,7 +16,6 @@
             "type" : "header"
           },{
             "name" : "AVALANCHE_CONNECT_STRING",	
-           "name" : "AVALANCHE_CONNECT_STRING",
             "label" : "Select Avalanche Warehouse",
             "badge" : "Warehouse",
             "type" : "combo",
