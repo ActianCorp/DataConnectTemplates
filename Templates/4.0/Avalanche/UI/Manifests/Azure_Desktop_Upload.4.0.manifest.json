@@ -6,12 +6,16 @@
     "pageInfo" : {
       "delimited-azure-connection" : {
         "image" : "Actian_a_colored.svg",
-        "title" : "Avalnche Desktop File Loader",
+        "title" : "Upload Data to an Avalanche Warehouse",
         "group" : "source",
         "paramGroups" : [ {
           "name" : "default",
           "fields" : [ {
-            "name" : "AVALANCHE_CONNECT_STRING",
+             "name" : "avalanche_header",
+            "label" : "Actian Avalanche Connection",
+            "type" : "header"
+          },{
+            "name" : "AVALANCHE_CONNECT_STRING",	
             "label" : "Select Avalanche Warehouse",
             "badge" : "Warehouse",
             "type" : "combo",
@@ -64,9 +68,9 @@
             } ]
           }, {
             "name" : "AVALANCHE_DBADMIN_GROUP_ACCESS",
-            "label" : "Grant table access to 'dbadmingrp' group",
+            "label" : "Provide table access in Avalanche Query Editor",
             "type" : "checkbox",
-            "description" : "",
+            "description" : "This option grants new table access to 'dbadmingrp' group.",
             "defaultValue" : true
           }, {
             "name" : "create_table_query_checkbox",
@@ -89,6 +93,10 @@
               "action" : "DISPLAY"
             }
           },{
+            "name" : "delimited_props_header",
+            "label" : "Delimited File(s) Properties",
+            "type" : "header"
+          },{
             "name" : "LIST_9_FILES",
             "label" : "Azure File List",
             "type" : "file",
@@ -97,11 +105,6 @@
               "required" : true
             },
             "defaultValue" : ""
-          }    
-           ,{
-            "name" : "additional_props_label",
-            "label" : "Additional Properties",
-            "type" : "label"
           }, {
             "name" : "HEADER",
             "label" : "Includes Header",
