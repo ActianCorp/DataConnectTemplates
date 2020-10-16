@@ -1,4 +1,11 @@
 # Changelog
+
+## [5.0] - 10/16/2020
+
+### Added
+- Added Actian Zen to Avalanche Templates
+- Bug Fixes
+
 ## [4.0] - 07/29/2020
 
 ### Added
@@ -47,3 +54,4 @@
 [2.0]: Templates/2.0
 [3.0]: Templates/3.0
 [4.0]: Templates/4.0
+[5.0]: Templates/5.0
