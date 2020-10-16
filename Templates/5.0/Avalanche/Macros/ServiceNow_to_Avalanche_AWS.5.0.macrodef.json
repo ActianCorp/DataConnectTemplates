@@ -1,0 +1,93 @@
+{
+  "macroSet" : [ {
+    "id" : 1,
+    "name" : "T_AVALANCHE",
+    "macros" : {
+      "macro" : [ {
+        "id" : 1,
+        "name" : "AVALANCHE_CONNECT_STRING",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. ODBC Connection string for connecting to Avalanche database. You can obtain this information from Avalanche portal."
+      }, {
+        "id" : 2,
+        "name" : "AVALANCHE_USERNAME",
+        "value" : "dbuser",
+        "encryptValue" : false,
+        "description" : "Required. Username for connecting to the database using the ODBC DSN."
+      }, {
+        "id" : 3,
+        "name" : "AVALANCHE_PASSWORD",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Password for connecting to the database using the ODBC DSN."
+      }, {
+        "id" : 4,
+        "name" : "AVALANCHE_TABLE",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      } ]
+    }
+  }, {
+    "id" : 2,
+    "name" : "T_AWS_S3",
+    "macros" : {
+      "macro" : [ {
+        "id" : 5,
+        "name" : "AWS_BUCKET_NAME",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the AWS storage bucket to pull the data from"
+      }, {
+        "id" : 6,
+        "name" : "AWS_ACCESS_KEY",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Credentials used to access AWS services."
+      }, {
+        "id" : 7,
+        "name" : "AWS_SECRET_KEY",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Credentials used to access AWS services."
+      }, {
+        "id" : 8,
+        "name" : "AWS_REGION",
+        "value" : "US East (Ohio)",
+        "encryptValue" : false,
+        "description" : "Required. Location where the bucket lies. Must be a region id for e.g. us-east-2, ap-south-1 or region name for e.g. US East (Ohio), Europe (Frankfurt). See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html for a list of regions."
+      } ]
+    }
+  }, {
+    "id" : 3,
+    "name" : "T_SERVICENOW",
+    "macros" : {
+      "macro" : [ {
+        "id" : 9,
+        "name" : "SERVICENOW_URL",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. URL of the ServiceNow instance. For e.g. https://myorg.service-now.com"
+      }, {
+        "id" : 10,
+        "name" : "SERVICENOW_USERNAME",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Username for accessing ServiceNow instance."
+      }, {
+        "id" : 11,
+        "name" : "SERVICENOW_PASSWORD",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Password for accessing ServiceNow instance."
+      }, {
+        "id" : 12,
+        "name" : "SERVICENOW_TABLE",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the table in ServiceNow."
+      } ]
+    }
+  } ]
+}

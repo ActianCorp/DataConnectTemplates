@@ -3,91 +3,109 @@
     "id" : "Delimited_Azure_Blob_to_Avalanche_Azure",
     "name" : "Delimited Azure Blob to Avalanche Azure",
     "lastModified" : 1593088890474,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load large data files from Azure Blob Storage into Avalanche warehouse",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "Delimited_GoogleDrive_to_Avalanche_AWS",
     "name" : "Delimited Google Drive to Avalanche AWS",
     "lastModified" : 1594633828820,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to quickly load large data files from Google Drive into Avalanche warehouse running on AWS platform. ",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Delimited_GoogleDrive_to_Avalanche_AWS.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Delimited_GoogleDrive_to_Avalanche_AWS.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "Delimited_GoogleDrive_to_Avalanche_Azure",
     "name" : "Delimited Google Drive to Avalanche Azure",
     "lastModified" : 1594633146974,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to quickly load large data files from Google Drive into Avalanche warehouse.",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Delimited_GoogleDrive_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Delimited_GoogleDrive_to_Avalanche_Azure.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "Delimited_S3_to_Avalanche_AWS",
     "name" : "Delimited S3 to Avalanche AWS",
     "lastModified" : 1593090118836,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load large data files from Amazon S3 buckets into Avalanche warehouse running on AWS platform",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Delimited_S3_to_Avalanche_AWS.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Delimited_S3_to_Avalanche_AWS.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "Netsuite_to_Avalanche_AWS",
     "name" : "Netsuite to Avalanche AWS",
     "lastModified" : 1594652865091,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load data from Netsuite tables into Avalanche warehouse running on AWS platform",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Netsuite_to_Avalanche_AWS.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Netsuite_to_Avalanche_AWS.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "Netsuite_to_Avalanche_Azure",
     "name" : "Netsuite to Avalanche Azure",
     "lastModified" : 1594652854482,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load data from Netsuite tables into Avalanche warehouse.",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Netsuite_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Netsuite_to_Avalanche_Azure.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "Salesforce_to_Avalanche_AWS",
     "name" : "Salesforce to Avalanche AWS",
     "lastModified" : 1594652787485,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load data from Salesforce tables into Avalanche warehouse running on AWS platform.",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Salesforce_to_Avalanche_AWS.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Salesforce_to_Avalanche_AWS.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "Salesforce_to_Avalanche_Azure",
     "name" : "Salesforce to Avalanche Azure",
     "lastModified" : 1594652698913,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load data from Salesforce tables into Avalanche warehouse.",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Salesforce_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Salesforce_to_Avalanche_Azure.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "ServiceNow_to_Avalanche_AWS",
     "name" : "ServiceNow to Avalanche AWS",
     "lastModified" : 1594652570111,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load data from ServiceNow tables into Avalanche warehouse running on AWS platform.",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/ServiceNow_to_Avalanche_AWS.process.rtc",
+    "entryPoint" : "Avalanche-5.0/ServiceNow_to_Avalanche_AWS.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   }, {
     "id" : "ServiceNow_to_Avalanche_Azure",
     "name" : "ServiceNow to Avalanche Azure",
     "lastModified" : 1594652461907,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load data from ServiceNow tables into Avalanche warehouse.",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/ServiceNow_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/ServiceNow_to_Avalanche_Azure.process.rtc",
+    "minimumRuntimeVersion" : "11.5.2-70"
+  }, {
+    "id" : "Zen_to_Avalanche_AWS",
+    "name" : "Zen to Avalanche AWS",
+    "lastModified" : 1600767594129,
+    "version" : "5.0",
+    "description" : "This template is used to load data from Actian Zen Database tables into Avalanche warehouse running on AWS platform.",
+    "project" : "Avalanche",
+    "entryPoint" : "Avalanche-5.0/Zen_to_Avalanche_AWS.process.rtc",
+    "minimumRuntimeVersion" : "11.5.2-70"
+  }, {
+    "id" : "Zen_to_Avalanche_Azure",
+    "name" : "Zen to Avalanche Azure",
+    "lastModified" : 1600767570921,
+    "version" : "5.0",
+    "description" : "This template is used to load data from Actian Zen Database tables into Avalanche warehouse.",
+    "project" : "Avalanche",
+    "entryPoint" : "Avalanche-5.0/Zen_to_Avalanche_Azure.process.rtc",
     "minimumRuntimeVersion" : "11.5.2-70"
   } ]
 }
