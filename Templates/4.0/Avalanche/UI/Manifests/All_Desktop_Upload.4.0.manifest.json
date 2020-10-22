@@ -172,7 +172,12 @@
             }, {
               "label" : "Single Quote (')",
               "value" : "'"
-            } ]
+                      }, {
+            "name" : "VW_SUBSTITUTE",
+            "label" : "Character Substitute",
+            "defaultValue" : "*",
+            "description" : "If Avalanche encounters an illegal character while trying to load, it will substitute this character for the illegal character and contoniue loading"
+          }]
           }
                      ]
         }],
