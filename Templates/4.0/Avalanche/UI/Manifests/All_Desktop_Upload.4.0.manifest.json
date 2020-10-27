@@ -33,6 +33,7 @@
           }, {
             "name" : "use_sso_checkbox",
             "exclude" : true,
+           "defaultValue" : true,
             "label" : "Run As Current User",
             "type" : "checkbox",
             "description" : "Run the upload as the current user andinto their namespace.  Uncheck to manually input Avalanche Credentials.",
