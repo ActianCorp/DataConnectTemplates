@@ -31,10 +31,35 @@
             "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
             "defaultValue" : ""
           }, {
+            "name" : "use_sso_checkbox",
+            "exclude" : true,
+            "label" : "Run As Current User",
+            "type" : "checkbox",
+            "description" : "Run the upload as the current user andinto their namespace.  Uncheck to manually input Avalanche Credentials.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
             "name" : "AVALANCHE_USERNAME",
             "label" : "Username",
             "defaultValue" : "dbuser",
-            "description" : "Avalanche database username used to connect to the database. The default user is dbuser."
+            "description" : "Avalanche database username used to connect to the database. The default user is dbuser.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              },{
+                "field" : "use_sso_checkbox",
+                "value" : "true"
+              } ],
+              "action" : "DISPLAY"
+            }
           }, {
             "name" : "AVALANCHE_PASSWORD",
             "label" : "Password",
@@ -45,8 +70,11 @@
             "dependsOn" : {
               "condition" : [ {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
+               "compareOp" : "EQ",
                 "value" : ""
+              },{
+                "field" : "use_sso_checkbox",
+                "value" : "true"
               } ],
               "action" : "DISPLAY"
             }
@@ -57,7 +85,15 @@
               "required" : true
             },
             "description" : "Avalanche table name where data will be written to.",
-            "defaultValue" : ""
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "OUTPUT_MODE",
             "label" : "Output Mode",
@@ -73,19 +109,43 @@
             }, {
               "label" : "Truncate And Append",
               "value" : "delete_append"
-            } ]
+            } ],
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "AVALANCHE_DBADMIN_GROUP_ACCESS",
             "label" : "Provide table access in Avalanche Query Editor",
             "type" : "checkbox",
             "description" : "This option grants new table access to 'dbadmingrp' group.",
-            "defaultValue" : true
+            "defaultValue" : true,
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "create_table_query_checkbox",
             "exclude" : true,
             "label" : "Specify Table Creation Query",
             "type" : "checkbox",
-            "description" : "Specify a create table statement to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above."
+            "description" : "Specify a create table statement to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "AVALANCHE_CREATE_TABLE_QUERY",
             "label" : "Create Table Query",
@@ -112,12 +172,28 @@
             "validators" : {
               "required" : true
             },
-            "defaultValue" : ""
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "HEADER",
             "label" : "Includes Header",
             "type" : "radio",
-            "defaultValue" : "true"
+            "defaultValue" : "true",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "FIELD_SEPARATOR",
             "type" : "ecombo",
@@ -139,7 +215,15 @@
             }, {
               "label" : "Space",
               "value" : "space"
-            } ]
+            } ],
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "RECORD_SEPARATOR",
             "type" : "ecombo",
@@ -164,7 +248,15 @@
             }, {
               "label" : "FF",
               "value" : "FF"
-            } ]
+            } ],
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "QUOTE_CHARACTERS",
             "type" : "ecombo",
@@ -180,12 +272,28 @@
             }, {
               "label" : "Single Quote (')",
               "value" : "'"
-                      }, {
+                      }],
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
             "name" : "VW_SUBSTITUTE",
             "label" : "Character Substitute",
             "defaultValue" : "*",
-            "description" : "If Avalanche encounters an illegal character while trying to load, it will substitute this character for the illegal character and contoniue loading"
-          }]
+            "description" : "If Avalanche encounters an illegal character while trying to load, it will substitute this character for the illegal character and continue loading",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }
                      ]
         }],
