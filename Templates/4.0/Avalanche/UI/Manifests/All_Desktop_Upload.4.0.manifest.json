@@ -41,7 +41,7 @@
                "compareOp" : "EQ",
                 "value" : ""
               } ],
-              "action" : "DISPLAY"
+              "action" : "DISABLE"
             }
           }, {
             "name" : "AVALANCHE_PASSWORD",
@@ -56,7 +56,7 @@
                "compareOp" : "EQ",
                 "value" : ""
               } ],
-              "action" : "DISPLAY"
+              "action" : "DISABLE"
             }
           }, {
             "name" : "AVALANCHE_TABLE",
