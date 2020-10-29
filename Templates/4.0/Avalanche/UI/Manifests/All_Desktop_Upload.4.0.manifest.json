@@ -31,21 +31,6 @@
             "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
             "defaultValue" : ""
           }, {
-            "name" : "use_sso_checkbox",
-            "exclude" : true,
-           "defaultValue" : true,
-            "label" : "Run As Current User",
-            "type" : "checkbox",
-            "description" : "Run the upload as the current user andinto their namespace.  Uncheck to manually input Avalanche Credentials.",
-            "dependsOn" : {
-              "condition" : [ {
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-                "value" : ""
-              } ],
-              "action" : "DISABLE"
-            }
-          }, {
             "name" : "AVALANCHE_USERNAME",
             "label" : "Username",
             "defaultValue" : "dbuser",
@@ -55,9 +40,6 @@
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
                 "value" : ""
-              },{
-                "field" : "use_sso_checkbox",
-                "value" : "false"
               } ],
               "action" : "DISPLAY"
             }
@@ -73,9 +55,6 @@
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
                 "value" : ""
-              },{
-                "field" : "use_sso_checkbox",
-                "value" : "false"
               } ],
               "action" : "DISPLAY"
             }
