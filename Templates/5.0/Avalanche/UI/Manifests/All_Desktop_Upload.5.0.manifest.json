@@ -1,0 +1,416 @@
+ {
+  "name" : "Blank Desktop Uploader",
+  "uploadtype": "all",
+  "fileloader" : true,
+  "ui" : {
+    "pageInfo" : {
+      "delimited-azure-connection" : {
+        "image" : "Actian_a_colored.svg",
+        "title" : "Upload Data to an Avalanche Warehouse",
+        "group" : "source",
+        "paramGroups" : [ {
+          "name" : "default",
+          "fields" : [ {
+                       "name" : "avalanche_header",
+            "label" : "Actian Avalanche Connection",
+           "exclude" : true,
+            "type" : "header"
+          },{
+            "name" : "AVALANCHE_CONNECT_STRING",
+            "label" : "Select Avalanche Warehouse",
+            "badge" : "Warehouse",
+            "type" : "combo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "warehouse-list",
+              "valueProperty" : "odbc",
+              "filterValue" : "Azure"
+            },
+            "validators" : {
+              "required" : true
+            },
+            "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
+            "defaultValue" : ""
+          }, {
+            "name" : "AVALANCHE_USERNAME",
+            "label" : "Username",
+            "defaultValue" : "dbuser",
+            "description" : "Avalanche database username used to connect to the database. The default user is dbuser.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "AVALANCHE_PASSWORD",
+            "label" : "Password",
+            "type" : "secret",
+            "required" : true,
+            "description" : "Connection database password used to connect to the database.",
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "AVALANCHE_TABLE",
+            "label" : "Table",
+            "validators" : {
+              "required" : true
+            },
+            "description" : "Avalanche table name where data will be written to.",
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "OUTPUT_MODE",
+            "label" : "Output Mode",
+            "type" : "combo",
+            "defaultValue" : "append",
+            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nDelete & Append: Truncates the table before inserting.\nReplace: Drops & Creates the table",
+            "data" : [ {
+              "label" : "Append",
+              "value" : "append"
+            }, {
+              "label" : "Replace",
+              "value" : "replace"
+            }, {
+              "label" : "Truncate And Append",
+              "value" : "delete_append"
+            } ],
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "AVALANCHE_DBADMIN_GROUP_ACCESS",
+            "label" : "Provide table access in Avalanche Query Editor",
+            "type" : "checkbox",
+            "description" : "This option grants new table access to 'dbadmingrp' group.",
+            "defaultValue" : true,
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "create_table_query_checkbox",
+            "exclude" : true,
+            "label" : "Specify Table Creation Query",
+            "type" : "checkbox",
+            "description" : "Specify a create table statement to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "AVALANCHE_CREATE_TABLE_QUERY",
+            "label" : "Create Table Query",
+            "type" : "file",
+            "extraInfo" : {
+              "filePrefix" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "create_table_query_checkbox",
+                "value" : "true"
+              } ],
+              "action" : "DISPLAY"
+            }
+           },{
+            "name" : "delimited_props_header",
+            "label" : "Delimited File(s) Properties",
+            "exclude" : true,
+            "type" : "header"
+          },{
+            "name" : "UPLOADED_FILES",
+            "label" : "Azure File List",
+            "type" : "file",
+            "description" : "Avalanche authenticates through Azure Active Directory to read and ingest data from an Azure Blob storage account. You need to create a service principal and provide its credentials to allow Avalanche access to the data.",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "HEADER",
+            "label" : "Includes Header",
+            "type" : "radio",
+            "defaultValue" : "true",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }]},
+           {
+          "name" : "avdanvced-opts",
+            "label" : "Advanced File Options",
+            "collapsible" : true,
+          "fields" : [ {
+            "name" : "advanced_options_checkbox",
+            "exclude" : true,
+            "label" : "Advanced File Options",
+           "defaultValue" : false,
+            "type" : "checkbox",
+            "description" : "Edit advanced upload file properties including record separator, character set and others.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "FIELD_SEPARATOR",
+            "type" : "ecombo",
+            "label" : "Field Separator",
+            "defaultValue" : "",
+            "description" : "Delimiter used in the input files to separate fields.",
+            "data" : [ {
+              "label" : "Auto-Detect",
+              "value" : ""
+            }, {
+              "label" : "Comma (,)",
+              "value" : ","
+            }, {
+              "label" : "Pipe (|)",
+              "value" : "|"
+            }, {
+              "label" : "Tab",
+              "value" : "tab"
+            }, {
+              "label" : "Space",
+              "value" : "space"
+            } ],
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
+                "value" : ""
+              },{
+                "field" : "advanced_options_checkbox",
+               "logicalOp" : "AND",
+                "value" : "true"
+              } ],
+              "action" : "DISPLAY"
+            }
+          }, {
+            "name" : "RECORD_SEPARATOR",
+            "type" : "ecombo",
+            "label" : "Record Separator",
+            "defaultValue" : "",
+            "description" : "Delimiter used in the input files to separate records.",
+            "data" : [ {
+              "label" : "Auto-Detect",
+              "value" : ""
+            }, {
+              "label" : "CR-LF",
+              "value" : "CR-LF"
+            }, {
+              "label" : "LF",
+              "value" : "LF"
+            }, {
+              "label" : "LF-CR",
+              "value" : "LF-CR"
+            }, {
+              "label" : "CR",
+              "value" : "CR"
+            }, {
+              "label" : "FF",
+              "value" : "FF"
+            } ],
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
+                "value" : ""
+              },{
+                "field" : "advanced_options_checkbox",
+               "logicalOp" : "AND",
+                "value" : "true"
+              } ],
+              "action" : "DISPLAY"
+            }
+          }, {
+            "name" : "QUOTE_CHARACTERS",
+            "type" : "ecombo",
+            "label" : "Quote Character",
+            "defaultValue" : "",
+            "description" : "Character used to quote fields.",
+            "data" : [ {
+              "label" : "Auto-Detect",
+              "value" : ""
+            }, {
+              "label" : "Double Quote (\")",
+              "value" : "\""
+            }, {
+              "label" : "Single Quote (')",
+              "value" : "'"
+                      }],
+            "dependsOn" : {
+              "condition" : [  {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
+                "value" : ""
+              },{
+                "field" : "advanced_options_checkbox",
+               "logicalOp" : "AND",
+                "value" : "true"
+              } ],
+              "action" : "DISPLAY"
+            }
+          }, {
+            "name" : "VW_SUBSTITUTE",
+            "label" : "Character Substitute",
+            "defaultValue" : "*",
+            "description" : "If Avalanche encounters an illegal character while trying to load, it will substitute this character for the illegal character and continue loading",
+            "dependsOn" : {
+              "condition" : [  {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
+                "value" : ""
+              },{
+                "field" : "advanced_options_checkbox",
+               "logicalOp" : "AND",
+                "value" : "true"
+              }  ],
+              "action" : "DISPLAY"
+            }
+          }, {
+            "name" : "VW_CHARSET",
+            "type" : "ecombo",
+            "label" : "Source Charset",
+            "defaultValue" : "",
+            "description" : "Character used to quote fields.",
+            "data" : [ {
+              "label" : "Default",
+              "value" : ""
+            }, {
+              "label" : "Support of Cyrillic on DOS",
+              "value" : "ALT"
+            }, {
+              "label" : "Simplified Chinese - PRC",
+              "value" : "CHINESES"
+                      }, {
+              "label" : "DEC Hebrew",
+              "value" : "HEBREW"
+                      }, {
+              "label" : "ISO 8859-1",
+              "value" : "ISO88591"
+                      }, {
+              "label" : "Korean",
+              "value" : "KOREAN"
+                      }, {
+              "label" : "Unicode encoding form UTF-8",
+              "value" : "UTF8"
+                      }],
+            "dependsOn" : {
+              "condition" : [  {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
+                "value" : ""
+              },{
+                "field" : "advanced_options_checkbox",
+               "logicalOp" : "AND",
+                "value" : "true"
+              } ],
+              "action" : "DISPLAY"
+            }
+          }
+                     ]
+        }],
+        "id" : "delimited-azure-connection"
+      }
+    },
+    "wizardPages" : [ "delimited-azure-connection" ]
+  },
+  "advanceMacros" : [ {
+    "name" : "AVALANCHE_DSN",
+    "description" : "Name of the ODBC data source to use for connecting to Avalanche database. Specify this if you want to use a preconfigured DSN on your system instead of connect string."
+  }, {
+    "name" : "AVALANCHE_CREATE_TABLE_QUERY",
+    "description" : "Create table statement to use for creating the table. Make sure partitioning is specified. Table name in the query should match the value of AVALANCHE_TABLE macro."
+  }, {
+    "name" : "AVALANCHE_CREATE_TABLE_OPTIONS",
+    "description" : "Use this option when you don't want to build the whole query but just want to specify options to pass in the \"with\" clause of create table query. This macro is ignored if AVALANCHE_CREATE_TABLE_QUERY macro is defined. Make sure partitioning is specified."
+  }, {
+    "name" : "FIELD_SEPARATOR",
+    "description" : "Delimiter used in the source files to separate the fields. Note that you may have to specify RECORD_SEPARATOR as well."
+  }, {
+    "name" : "RECORD_SEPARATOR",
+    "description" : "Delimiter used in the source files to separate the data records. Note that you may have to specify FIELD_SEPARATOR as well."
+  }, {
+    "name" : "QUOTE_CHARACTERS",
+    "description" : "character used to quote fields. for e.g. a double quote \".  use two characters if start and end quote characters are different. for e.g. []. Note that you may have to specify RECORD_SEPARATOR and FIELD_SEPARATOR macros as well."
+  }, {
+    "name" : "SAMPLE_SIZE",
+    "description" : "Number of records to sample for building the source schema."
+  }, {
+    "name" : "OUTPUT_MODE",
+    "description" : "What table operations need to be performed before inserting data. Following options are available. \"replace\": Drops/Creates table, \"delete_append\": Truncates table before inserting. \"append\": Creates table only if doesn't exist and inserts records. Default is \"append\"."
+  }, {
+    "name" : "DEFAULT_TEXT_COL_SIZE",
+    "description" : "Set the default size of the text columns in the table. Set it to a reasonable value based on your data to avoid truncation."
+  }, {
+    "name" : "UNICODE_CHARS",
+    "description" : "Tells whether the data contains unicode characters. Value can be True or False. If True, nvarchar data type is used for text columns."
+  }, {
+    "name" : "SOURCE_FETCH_SIZE",
+    "description" : "Size of data in bytes to fetch from the source file in the azure storage. Default is 15000000 (15MB)."
+  }, {
+    "name" : "AVALANCHE_DBADMIN_GROUP_ACCESS",
+    "description" : "Grant table access to \"dbadmingrp\" group. Only applicable when new table is created. Default is True."
+  }, {
+    "name" : "ENCODING",
+    "description" : "Source character set encoding."
+  } ],
+  "metaData" : {
+    "owner" : "ACTIAN"
+  },
+  "id" : "Blank_Desktop_Uploader",
+  "lastModified" : 1593088890474,
+  "version" : "5.0",
+  "entryPoint" : "Avalanche-5.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
+  "project" : "Avalanche"
+}

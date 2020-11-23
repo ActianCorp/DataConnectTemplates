@@ -273,6 +273,9 @@
   }, {
     "name" : "AVALANCHE_DBADMIN_GROUP_ACCESS",
     "description" : "Grant table access to \"dbadmingrp\" group. Only applicable when new table is created. Default is True."
+  }, {
+    "name" : "ENCODING",
+    "description" : "Source Character set encoding."
   } ],
   "metaData" : {
     "owner" : "ACTIAN"
