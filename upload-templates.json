@@ -18,10 +18,10 @@
     "id" : "Delimited_Azure_Blob_to_Avalanche_Azure",
     "name" : "Delimited Azure Blob to Avalanche Azure",
     "lastModified" : 1593088890474,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load large data files from Azure Blob Storage into Avalanche warehouse",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
     "uploadType" : "azure",
     "fileLoader" : true
   },
@@ -29,10 +29,10 @@
     "id" : "Delimited_AWS_Blob_to_Avalanche_Azure",
     "name" : "Delimited AWS Blob to Avalanche Azure",
     "lastModified" : 1593088890474,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load large data files from AWS S3 Storage into Avalanche warehouse",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
     "uploadType" : "aws",
     "fileLoader" : true
   },
@@ -40,10 +40,10 @@
     "id" : "Delimited_Azure_Blob_to_Avalanche_Azure",
     "name" : "Delimited Azure Blob to Avalanche Azure",
     "lastModified" : 1593088890474,
-    "version" : "4.0",
+    "version" : "5.0",
     "description" : "This template is used to load large data files from Azure Blob Storage into Avalanche warehouse",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-4.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
     "uploadType" : "all",
     "fileLoader" : true
   }]
