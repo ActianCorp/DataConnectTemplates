@@ -40,7 +40,13 @@
               "condition" : [ {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
               "action" : "DISABLE"
             }
@@ -52,10 +58,16 @@
             "description" : "Connection database password used to connect to the database.",
             "defaultValue" : "",
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
               "action" : "DISABLE"
             }
@@ -68,10 +80,16 @@
             "description" : "Avalanche table name where data will be written to.",
             "defaultValue" : "",
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
               "action" : "DISABLE"
             }
@@ -92,10 +110,16 @@
               "value" : "delete_append"
             } ],
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
               "action" : "DISABLE"
             }
@@ -109,8 +133,14 @@
               "condition" : [ {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
-              } ],
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
+              }  ],
               "action" : "DISABLE"
             }
           }, {
@@ -120,10 +150,16 @@
             "type" : "checkbox",
             "description" : "Specify a create table statement to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above.",
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
               "action" : "DISABLE"
             }
@@ -156,11 +192,17 @@
             },
             "defaultValue" : "",
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
-              } ],
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
+              }  ],
               "action" : "DISABLE"
             }
           }, {
@@ -169,10 +211,16 @@
             "type" : "radio",
             "defaultValue" : "true",
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
               "action" : "DISABLE"
             }
@@ -189,11 +237,17 @@
             "type" : "checkbox",
             "description" : "Edit advanced upload file properties including record separator, character set and others.",
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
-              } ],
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
+              }  ],
               "action" : "DISABLE"
             }
           }, {
