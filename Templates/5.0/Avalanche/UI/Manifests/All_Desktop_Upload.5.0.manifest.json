@@ -146,9 +146,9 @@
           }, {
             "name" : "create_table_query_checkbox",
             "exclude" : true,
-            "label" : "Specify Table Creation Query",
+            "label" : "Specify Table Creation File",
             "type" : "checkbox",
-            "description" : "Specify a create table statement to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above.",
+            "description" : "Specify a create table file to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above.",
             "dependsOn" : {
               "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
@@ -179,9 +179,14 @@
             }
            },{
             "name" : "delimited_props_header",
-            "label" : "Delimited File(s) Properties",
+            "label" : "Delimited Files",
             "exclude" : true,
             "type" : "header"
+          },{
+            "name" : "delimited_props_label",
+            "label" : "Choose files from your local system to upload to your Avalanche Warehouse. These files must contain the same format.",
+            "exclude" : true,
+            "type" : "label"
           },{
             "name" : "UPLOADED_FILES",
             "label" : "Azure File List",
@@ -210,6 +215,7 @@
             "label" : "Includes Header",
             "type" : "radio",
             "defaultValue" : "true",
+            "description" : "Check the box if the first line of the source file contains the field names instead of field data.",
             "dependsOn" : {
               "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
@@ -229,28 +235,8 @@
           "name" : "avdanvced-opts",
             "label" : "Advanced File Options",
             "collapsible" : true,
+            "initiallyCollapsed" : true,
           "fields" : [ {
-            "name" : "advanced_options_checkbox",
-            "exclude" : true,
-            "label" : "Advanced File Options",
-           "defaultValue" : false,
-            "type" : "checkbox",
-            "description" : "Edit advanced upload file properties including record separator, character set and others.",
-            "dependsOn" : {
-              "condition" : [  {
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
-                "value" : ""
-              },{
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
-                "value" : "none"
-              }  ],
-              "action" : "DISABLE"
-            }
-          }, {
             "name" : "FIELD_SEPARATOR",
             "type" : "ecombo",
             "label" : "Field Separator",
@@ -273,17 +259,18 @@
               "value" : "space"
             } ],
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
               },{
-                "field" : "advanced_options_checkbox",
-               "logicalOp" : "AND",
-                "value" : "true"
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
-              "action" : "DISPLAY"
+              "action" : "DISABLE"
             }
           }, {
             "name" : "RECORD_SEPARATOR",
@@ -311,17 +298,18 @@
               "value" : "FF"
             } ],
             "dependsOn" : {
-              "condition" : [ {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
               },{
-                "field" : "advanced_options_checkbox",
-               "logicalOp" : "AND",
-                "value" : "true"
-              } ],
-              "action" : "DISPLAY"
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
+              }  ],
+              "action" : "DISABLE"
             }
           }, {
             "name" : "QUOTE_CHARACTERS",
@@ -340,17 +328,18 @@
               "value" : "'"
                       }],
             "dependsOn" : {
-              "condition" : [  {
+              "condition" : [   {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
               },{
-                "field" : "advanced_options_checkbox",
-               "logicalOp" : "AND",
-                "value" : "true"
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
-              "action" : "DISPLAY"
+              "action" : "DISABLE"
             }
           }, {
             "name" : "VW_SUBSTITUTE",
@@ -358,17 +347,18 @@
             "defaultValue" : "*",
             "description" : "If Avalanche encounters an illegal character while trying to load, it will substitute this character for the illegal character and continue loading",
             "dependsOn" : {
-              "condition" : [  {
+              "condition" : [   {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
               },{
-                "field" : "advanced_options_checkbox",
-               "logicalOp" : "AND",
-                "value" : "true"
-              }  ],
-              "action" : "DISPLAY"
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
+              } ],
+              "action" : "DISABLE"
             }
           }, {
             "name" : "VW_CHARSET",
@@ -399,17 +389,18 @@
               "value" : "UTF8"
                       }],
             "dependsOn" : {
-              "condition" : [  {
+              "condition" : [   {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
                 "value" : ""
               },{
-                "field" : "advanced_options_checkbox",
-               "logicalOp" : "AND",
-                "value" : "true"
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
               } ],
-              "action" : "DISPLAY"
+              "action" : "DISABLE"
             }
           }
                      ]
