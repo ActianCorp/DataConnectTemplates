@@ -26,14 +26,24 @@
     "fileLoader" : true
   },
   {
-    "id" : "Delimited_AWS_Blob_to_Avalanche_Azure",
+    "id" : "Delimited_S3_to_Avalanche_AWS",
     "name" : "Delimited AWS Blob to Avalanche Azure",
     "lastModified" : 1593088890474,
     "version" : "5.0",
     "description" : "This template is used to load large data files from AWS S3 Storage into Avalanche warehouse",
     "project" : "Avalanche",
-    "entryPoint" : "Avalanche-5.0/Delimited_Azure_Blob_to_Avalanche_Azure.process.rtc",
+    "entryPoint" : "Avalanche-5.0/Delimited_S3_to_Avalanche_AWS.process.rtc",
     "uploadType" : "aws",
+    "fileLoader" : true
+  },{
+    "id" : "Delimited_GCP_Storage_to_Avalanche_GCP",
+    "name" : "Delimited GCS to Avalanche Google",
+    "lastModified" : 1593088890474,
+    "version" : "6.0",
+    "description" : "This template is used to load large data files from Google Cloud Storage Storage into Avalanche warehouse",
+    "project" : "Avalanche",
+    "entryPoint" : "Avalanche-6.0/Delimited_GCP_Storage_to_Avalanche_GCP.process.rtc",
+    "uploadType" : "google",
     "fileLoader" : true
   },
                 {
