@@ -1,0 +1,99 @@
+{
+  "macroSet" : [ {
+    "id" : 1,
+    "name" : "T_AZURE",
+    "macros" : {
+      "macro" : [ {
+        "id" : 1,
+        "name" : "AZURE_CLIENT_ID",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Credentials used to access azure services."
+      }, {
+        "id" : 2,
+        "name" : "AZURE_CLIENT_SECRET",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Credentials used to access azure services."
+      }, {
+        "id" : 3,
+        "name" : "AZURE_TENANT_ID",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Tenant ID (Directory ID) assigned by Azure Active Directory service."
+      }, {
+        "id" : 4,
+        "name" : "AZURE_CONTAINER_NAME",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the container in azure storage account which contains data files"
+      }, {
+        "id" : 5,
+        "name" : "AZURE_STORAGE_ACCOUNT",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the azure storage account."
+      } ]
+    }
+  }, {
+    "id" : 2,
+    "name" : "T_AVALANCHE",
+    "macros" : {
+      "macro" : [ {
+        "id" : 6,
+        "name" : "AVALANCHE_CONNECT_STRING",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. ODBC Connection string for connecting to Avalanche database. You can obtain this information from Avalanche portal."
+      }, {
+        "id" : 7,
+        "name" : "AVALANCHE_USERNAME",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Username for connecting to the database using the ODBC DSN."
+      }, {
+        "id" : 8,
+        "name" : "AVALANCHE_PASSWORD",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Password for connecting to the database using the ODBC DSN."
+      }, {
+        "id" : 9,
+        "name" : "AVALANCHE_TABLE",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      } ]
+    }
+  }, {
+    "id" : 3,
+    "name" : "T_SALESFORCE",
+    "macros" : {
+      "macro" : [ {
+        "id" : 10,
+        "name" : "SALESFORCE_USERNAME",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Salesforce username"
+      }, {
+        "id" : 11,
+        "name" : "SALESFORCE_PASSWORD",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Salesforce password"
+      }, {
+        "id" : 12,
+        "name" : "SALESFORCE_TABLE",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the table or entity in Salesforce"
+      }, {
+        "id" : 13,
+        "name" : "SALESFORCE_SANDBOX_MODE",
+        "value" : "True",
+        "encryptValue" : false,
+        "description" : "Required. Whether to connect to the Salesforce application in sandbox environment."
+      } ]
+    }
+  } ]
+}

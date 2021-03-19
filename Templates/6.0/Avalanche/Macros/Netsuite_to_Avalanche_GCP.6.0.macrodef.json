@@ -1,0 +1,141 @@
+{
+  "macroSet" : [ {
+    "id" : 1,
+    "name" : "T_GCP",
+    "macros" : {
+      "macro" : [ {
+        "id" : 1,
+        "name" : "GCP_BUCKET",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Name of the bucket in Google Cloud Platform storage to use for staging the data"
+      }, {
+        "id" : 2,
+        "name" : "GCP_CLIENT_EMAIL",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Service account client email from GCP console"
+      }, {
+        "id" : 3,
+        "name" : "GCP_PRIVATE_KEY",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Private key object for the service account in PKCS#8 format"
+      }, {
+        "id" : 4,
+        "name" : "GCP_CLIENT_ID",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Service account client ID from GCP console"
+      }, {
+        "id" : 5,
+        "name" : "GCP_PRIVATE_KEY_ID",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Private key identifier for the service account from GCP console"
+      }, {
+        "id" : 6,
+        "name" : "GCP_REGION",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Cloud storage location for specified bucket (optional)"
+      }, {
+        "id" : 7,
+        "name" : "GCP_PROJECT_ID",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "ID number for project from GCP console (required when creating a new bucket)"
+      } ]
+    }
+  }, {
+    "id" : 2,
+    "name" : "T_NETSUITE",
+    "macros" : {
+      "macro" : [ {
+        "id" : 8,
+        "name" : "NETSUITE_ACCOUNT",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. The Netsuite Account ID."
+      }, {
+        "id" : 9,
+        "name" : "NETSUITE_EMAIL",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Email ID used to access the Netsuite Account."
+      }, {
+        "id" : 10,
+        "name" : "NETSUITE_PASSWORD",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Password used to access the Netsuite Account.."
+      }, {
+        "id" : 11,
+        "name" : "NETSUITE_APPLICATION_ID",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Application ID used to access the Netsuite Account using webservice."
+      }, {
+        "id" : 12,
+        "name" : "NETSUITE_TOKEN_ID",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Token ID used in token based authentication."
+      }, {
+        "id" : 13,
+        "name" : "NETSUITE_TOKEN_SECRET",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Token Secret used in token based authentication."
+      }, {
+        "id" : 14,
+        "name" : "NETSUITE_CONSUMER_KEY",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Consumer key used in token based authentication."
+      }, {
+        "id" : 15,
+        "name" : "NETSUITE_CONSUMER_SECRET",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Consumer secret used in token based authentication."
+      }, {
+        "id" : 16,
+        "name" : "NETSUITE_TABLE",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the table in Netsuite."
+      } ]
+    }
+  }, {
+    "id" : 3,
+    "name" : "T_AVALANCHE",
+    "macros" : {
+      "macro" : [ {
+        "id" : 17,
+        "name" : "AVALANCHE_CONNECT_STRING",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. ODBC Connection string for connecting to Avalanche database. You can obtain this information from Avalanche portal."
+      }, {
+        "id" : 18,
+        "name" : "AVALANCHE_USERNAME",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Username for connecting to the database using the ODBC DSN."
+      }, {
+        "id" : 19,
+        "name" : "AVALANCHE_PASSWORD",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Password for connecting to the database using the ODBC DSN."
+      }, {
+        "id" : 20,
+        "name" : "AVALANCHE_TABLE",
+        "value" : "",
+        "encryptValue" : false,
+        "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      } ]
+    }
+  } ]
+}
