@@ -49,6 +49,7 @@
           },  {
             "name" : "AVALANCHE_USERNAME",
             "label" : "Username",
+            "required" : true,
             "defaultValue" : "dbuser",
             "description" : "Avalanche database username used to connect to the database. The default user is dbuser.",
             "dependsOn" : {
