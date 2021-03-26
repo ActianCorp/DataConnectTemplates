@@ -300,7 +300,7 @@
     "description" : "Grant table access to \"dbadmingrp\" group. Only applicable when new table is created. Default is True."
   }, {
     "name" : "TRUNCATION_HANDLING",
-    "description" : "Specifies truncation handling for text data. Following values are supported. \"ignore\" - Ignores the truncation and continues the execution. \"warn\" - Logs a warning about truncation and continues the execution. \"error\" - Logs an error message and aborts the execution. Default is \"ignore\"."
+    "description" : "Specifies truncation handling for text data. Following values are supported. \"ignore\" - Ignores the truncation and continues the execution. \"warn\" - Logs a warning about truncation and continues the execution. \"error\" - Logs an error message and aborts the execution. Default is \"error\"."
   } ],
   "metaData" : {
     "owner" : "ACTIAN"
@@ -311,5 +311,5 @@
   "entryPoint" : "Avalanche-6.0/Zen_to_Avalanche_GCP.process.rtc",
   "project" : "Avalanche",
   "description" : "This template is used to load data from Actian Zen Database tables into Avalanche warehouse.",
-  "minimumRuntimeVersion" : "11.5.2-87"
+  "minimumRuntimeVersion" : "11.6.0-87"
 }

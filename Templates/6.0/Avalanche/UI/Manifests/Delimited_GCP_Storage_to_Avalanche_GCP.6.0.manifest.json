@@ -281,10 +281,13 @@
     "description" : "Tells whether the data contains unicode characters. Value can be True or False. If True, nvarchar data type is used for text columns."
   }, {
     "name" : "SOURCE_FETCH_SIZE",
-    "description" : "Size of data in bytes to fetch from the source file in the Google Drive. Default is 15000000 (15MB)."
+    "description" : "Size of data in bytes to fetch from the source file in the Google Cloud Storage. Default is 15000000 (15MB)."
   }, {
     "name" : "AVALANCHE_DBADMIN_GROUP_ACCESS",
     "description" : "Grant table access to \"dbadmingrp\" group. Only applicable when new table is created. Default is True."
+  }, {
+    "name" : "TRUNCATION_HANDLING",
+    "description" : "Specifies truncation handling for text data. Following values are supported. \"ignore\" - Ignores the truncation and continues the execution. \"error\" - Logs an error message and aborts the execution. Default is \"error\"."
   } ],
   "metaData" : {
     "owner" : "ACTIAN"
@@ -294,6 +297,6 @@
   "version" : "6.0",
   "entryPoint" : "Avalanche-6.0/Delimited_GCP_Storage_to_Avalanche_GCP.process.rtc",
   "project" : "Avalanche",
-  "description" : "This template is used to quickly load large data files from Google Drive into Avalanche warehouse.",
-  "minimumRuntimeVersion" : "11.5.2-87"
+  "description" : "This template is used to quickly load large data files from Google Cloud Storage into Avalanche warehouse.",
+  "minimumRuntimeVersion" : "11.6.0-87"
 }
