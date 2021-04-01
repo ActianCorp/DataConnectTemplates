@@ -1,0 +1,34 @@
+{
+  "templateInfo" : {
+    "id" : "DataIntegration",
+    "name" : "DataIntegration",
+    "version" : "1.0",
+    "description" : "",
+    "project" : "CloudMapper",
+    "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
+    "minimumRuntimeVersion" : "11.5.2-70",
+    "packageId" : "DataIntegration"
+  },
+  "sources" : [ {
+    "id" : "Actian Avalanche_src",
+    "name" : "Actian Avalanche",
+    "connector" : "Actian Avalanche"
+  }, {
+    "id" : "NetSuite_src",
+    "name" : "NetSuite",
+    "connector" : "NetSuite"
+  }, {
+    "id" : "Salesforce_src",
+    "name" : "Salesforce",
+    "connector" : "Salesforce"
+  }, {
+    "id" : "ServiceNow_src",
+    "name" : "ServiceNow",
+    "connector" : "ServiceNow"
+  } ],
+  "targets" : [ {
+    "id" : "Actian Avalanche_trg",
+    "name" : "Actian Avalanche",
+    "connector" : "Actian Avalanche"
+  } ]
+}
