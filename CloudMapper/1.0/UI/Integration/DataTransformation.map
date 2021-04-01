@@ -1,0 +1,61 @@
+{
+  "map" : {
+    "sources" : [ {
+      "name" : "SOURCE_1",
+      "description" : "",
+      "properties" : [ {
+        "name" : "schema_mismatch",
+        "value" : "error"
+      } ],
+      "control_links" : [ ],
+      "schema" : {
+        "root_defs" : [ {
+          "name" : "DocumentRoot",
+          "max_occurs" : "unbounded",
+          "choice" : [ ]
+        } ],
+        "type_defs" : [ ],
+        "rule_defs" : { }
+      }
+    } ],
+    "targets" : [ {
+      "name" : "TARGET_1",
+      "description" : "",
+      "properties" : [ {
+        "name" : "multimode_target",
+        "value" : "false"
+      }, {
+        "name" : "schema_mismatch",
+        "value" : "error"
+      } ],
+      "schema" : {
+        "root_defs" : [ {
+          "name" : "DocumentRoot",
+          "max_occurs" : "unbounded",
+          "choice" : [ ]
+        } ],
+        "type_defs" : [ ],
+        "rule_defs" : { }
+      },
+      "map_rules" : { }
+    } ],
+    "execution_options" : [ {
+      "name" : "overflow",
+      "value" : "error"
+    }, {
+      "name" : "truncation",
+      "value" : "error"
+    }, {
+      "name" : "nulls",
+      "value" : "error"
+    } ],
+    "artifact_metadata" : {
+      "description" : "",
+      "creator" : "ACTIAN",
+      "author" : "ACTIAN",
+      "version" : "1.6",
+      "date_created" : "2020-07-24T13:29:25.39124+05:30",
+      "date_modified" : "2020-11-02T23:10:48.404+05:30"
+    }
+  }
+}

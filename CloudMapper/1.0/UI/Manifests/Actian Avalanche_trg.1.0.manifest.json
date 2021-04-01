@@ -1,0 +1,301 @@
+{
+  "ui" : {
+    "pageInfo" : {
+      "avalanche-target-connection" : {
+        "title" : "Set Target Information",
+        "image" : "Actian_a_colored.svg",
+        "group" : "target",
+        "paramGroups" : [ {
+          "name" : "connection-info",
+          "label" : "ACTIAN AVALANCHE CONNECTION",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "TRG_AVALANCHE_CONNECT_STRING",
+            "label" : "Select Avalanche Warehouse",
+            "badge" : "Warehouse",
+            "type" : "combo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "warehouse-list",
+              "valueProperty" : "odbc"
+            },
+            "validators" : {
+              "required" : true
+            },
+            "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
+            "defaultValue" : ""
+          }, {
+            "name" : "TRG_AVALANCHE_USERNAME",
+            "label" : "Username",
+            "defaultValue" : "dbuser",
+            "description" : "Avalanche database username used to connect to the database. The default user is dbuser."
+          }, {
+            "name" : "TRG_AVALANCHE_PASSWORD",
+            "label" : "Password",
+            "type" : "secret",
+            "required" : true,
+            "description" : "Connection database password used to connect to the database.",
+            "defaultValue" : ""
+          }, {
+            "name" : "TEST_CONNECTION",
+            "type" : "action",
+            "label" : "Test Credentials",
+            "data" : {
+              "inProgressText" : "Connecting",
+              "successText" : "Connection successful.",
+              "errorText" : "Connection failed.",
+              "tryAgain" : true,
+              "params" : {
+                "nodeName" : "TARGET_1"
+              }
+            }
+          } ]
+        }, {
+          "name" : "object-info",
+          "label" : "TARGET OBJECT",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "TRG_AVALANCHE_TABLE",
+            "label" : "Table",
+            "type" : "ecombo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "dc-table-list",
+              "requestParams" : {
+                "nodeName" : "TARGET_1",
+                "type" : "target"
+              }
+            },
+            "validators" : {
+              "required" : true,
+              "custom" : {
+                "message" : "Source and Target tables cannot be same."
+              }
+            },
+            "description" : "Avalanche table name where data will be written to.",
+            "extraInfo" : {
+              "loadOnOpen" : true
+            },
+            "listenToChanges" : [ {
+              "field" : {
+                "name" : "TRG_AVALANCHE_CONNECT_STRING"
+              }
+            }, {
+              "field" : {
+                "name" : "TRG_AVALANCHE_USERNAME"
+              }
+            } ],
+            "defaultValue" : ""
+          }, {
+            "name" : "TRG_AVALANCHE_OUTPUT_MODE",
+            "label" : "Output Mode",
+            "type" : "combo",
+            "defaultValue" : "APPEND",
+            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nTruncate & Append: Truncates the table before inserting.\nReplace: Drops & Creates the table",
+            "data" : [ {
+              "label" : "Append",
+              "value" : "APPEND"
+            }, {
+              "label" : "Replace",
+              "value" : "REPLACE"
+            }, {
+              "label" : "Truncate And Append",
+              "value" : "DELAPPEND"
+            } ]
+          }, {
+            "name" : "TRG_AVALANCHE_DBADMIN_GROUP_ACCESS",
+            "label" : "Provide table access in Avalanche Query Editor",
+            "type" : "checkbox",
+            "description" : "This option grants table access to the 'dbadmingrp' group.",
+            "defaultValue" : true
+          } ]
+        } ],
+        "id" : "avalanche-target-connection"
+      }
+    },
+    "wizardPages" : [ "avalanche-target-connection" ]
+  },
+  "connectInfo" : {
+    "uiConfig" : {
+      "fieldPropertyPrefs" : {
+        "defaultAllowNulls" : true
+      }
+    },
+    "type" : "target",
+    "connector" : "Actian Avalanche",
+    "macrodef" : {
+      "macroSet" : [ {
+        "id" : 1,
+        "name" : "Actian Avalanche",
+        "macros" : {
+          "macro" : [ {
+            "id" : 1,
+            "name" : "TRG_AVALANCHE_CONNECT_STRING",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. ODBC Connection string for connecting to Avalanche database. You can obtain this information from Avalanche portal."
+          }, {
+            "id" : 2,
+            "name" : "TRG_AVALANCHE_USERNAME",
+            "value" : "dbuser",
+            "encryptValue" : false,
+            "description" : "Required. Username for connecting to the database using the ODBC DSN."
+          }, {
+            "id" : 3,
+            "name" : "TRG_AVALANCHE_PASSWORD",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Password for connecting to the database using the ODBC DSN."
+          }, {
+            "id" : 4,
+            "name" : "TRG_AVALANCHE_TABLE",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Name of the table in Avalanche, the data will be written to."
+          }, {
+            "id" : 5,
+            "name" : "TRG_AVALANCHE_DBADMIN_GROUP_ACCESS",
+            "value" : "true",
+            "encryptValue" : false,
+            "description" : "Whether to grant table access to the 'dbadmingrp' group."
+          } ]
+        }
+      } ]
+    },
+    "datasetInfo" : {
+      "named_dataset" : {
+        "name" : "TARGET_1",
+        "schemaMismatchOption" : "error",
+        "dataset" : {
+          "session_info" : {
+            "parts" : [ {
+              "name" : "username",
+              "value" : "$(TRG_AVALANCHE_USERNAME)"
+            }, {
+              "name" : "password",
+              "value" : "$(TRG_AVALANCHE_PASSWORD)"
+            } ],
+            "properties" : [ {
+              "name" : "dsntype",
+              "value" : "User & System"
+            }, {
+              "name" : "autocommit",
+              "value" : "False"
+            }, {
+              "name" : "drivercompletion",
+              "value" : "complete"
+            }, {
+              "name" : "modifydopts",
+              "value" : "True"
+            }, {
+              "name" : "driveropts",
+              "value" : "$(TRG_AVALANCHE_CONNECT_STRING)"
+            }, {
+              "name" : "txnisolation",
+              "value" : "serializable"
+            } ],
+            "type" : "target",
+            "connector" : "Actian Avalanche"
+          },
+          "connect_info" : {
+            "parts" : [ {
+              "name" : "table",
+              "value" : "$(TRG_AVALANCHE_TABLE)"
+            }, {
+              "name" : "outputmode",
+              "value" : "$(TRG_AVALANCHE_OUTPUT_MODE)"
+            } ],
+            "properties" : [ {
+              "name" : "encoding",
+              "value" : "OEM"
+            }, {
+              "name" : "constraintddl",
+              "value" : "$(TRG_AVALANCHE_CONSTRAINT_DDL)"
+            }, {
+              "name" : "commitfrequency",
+              "value" : "0"
+            }, {
+              "name" : "systables",
+              "value" : "False"
+            }, {
+              "name" : "views",
+              "value" : "False"
+            }, {
+              "name" : "synonyms",
+              "value" : "False"
+            }, {
+              "name" : "bulkoperations",
+              "value" : "False"
+            }, {
+              "name" : "identifierquotes",
+              "value" : "Default"
+            }, {
+              "name" : "maxdatalen",
+              "value" : "1048576"
+            }, {
+              "name" : "primarykey",
+              "value" : "$(TRG_AVALANCHE_PRIMARY_KEYS)"
+            }, {
+              "name" : "usecursors",
+              "value" : "False"
+            }, {
+              "name" : "arraysize",
+              "value" : "10000"
+            }, {
+              "name" : "usepartition",
+              "value" : "$(TRG_AVALANCHE_USE_PARTITION)"
+            }, {
+              "name" : "partition",
+              "value" : "$(TRG_AVALANCHE_PARTITION)"
+            } ]
+          },
+          "schema_info" : {
+            "schema" : {
+              "root_defs" : [ {
+                "name" : "DocumentRoot",
+                "max_occurs" : "unbounded",
+                "choice" : [ {
+                  "name" : "R1",
+                  "rec_type_ref" : "R1"
+                } ]
+              } ],
+              "type_defs" : [ {
+                "name" : "R1",
+                "groups" : [ {
+                  "name" : "R1",
+                  "sequence" : [ ]
+                } ]
+              } ],
+              "rule_defs" : { },
+              "artifact_metadata" : { }
+            }
+          },
+          "sample_info" : {
+            "type" : "All",
+            "start" : 0,
+            "end" : 0
+          },
+          "artifact_metadata" : {
+            "creator" : "ACTIAN",
+            "author" : "ACTIAN",
+            "version" : "1.0",
+            "date_created" : "20200728T10:23:42Z",
+            "date_modified" : "20200728T10:23:42Z"
+          }
+        }
+      }
+    }
+  },
+  "advanceMacros" : [ ],
+  "metaData" : {
+    "owner" : "ACTIAN"
+  },
+  "id" : "Actian Avalanche_trg",
+  "name" : "Actian Avalanche",
+  "version" : "1.0",
+  "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
+  "project" : "CloudMapper",
+  "description" : "",
+  "minimumRuntimeVersion" : "11.5.2-70",
+  "manifestFor" : "target"
+}
