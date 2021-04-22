@@ -30,7 +30,8 @@ To run the templates from Integration Manager:
 | [2.0](Templates/2.0) | >= 11.5.2-65          |
 | [3.0](Templates/3.0) | >= 11.5.2-65          |
 | [4.0](Templates/4.0) | >= 11.5.2-70 |
-| [5.0 (latest)](Templates/5.0) | >= 11.5.2-70 |
+| [5.0](Templates/5.0) | >= 11.5.2-70 |
+| [6.0 (latest)](Templates/6.0) | >= 11.6.0-87 |
 
 ## Project Structure
 ```

@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.0] - 04/22/2021
+
+### Added
+- Delimited_GCP_Storage_to_Avalanche_GCP template.
+- Netsuite_to_Avalanche_GCP template.
+- ServiceNow_to_Avalanche_GCP template.
+- Zen_to_Avalanche_GCP template.
+- Bug Fixes
+
 ## [5.0] - 10/16/2020
 
 ### Added
@@ -55,3 +64,4 @@
 [3.0]: Templates/3.0
 [4.0]: Templates/4.0
 [5.0]: Templates/5.0
+[6.0]: Templates/6.0
