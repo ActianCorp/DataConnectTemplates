@@ -11,7 +11,7 @@
           "fields" : [ {
             "name" : "GCP_BUCKET",
             "label" : "GCP Bucket",
-            "description" : "Name of the bucket in Google Cloud Platform storage containing the data",
+            "description" : "Name of the bucket in Google Cloud Platform storage containing the data.",
             "validators" : {
               "required" : true
             },
@@ -19,7 +19,7 @@
           }, {
             "name" : "GCP_CLIENT_EMAIL",
             "label" : "GCP Client Email",
-            "description" : "Service account client email from Google Cloud Platform console",
+            "description" : "Service account client email from Google Cloud Platform console.",
             "validators" : {
               "required" : true
             },
@@ -28,7 +28,7 @@
             "name" : "GCP_PRIVATE_KEY",
             "label" : "GCP Private Key",
             "type" : "secret",
-            "description" : "Private key object for the service account in PKCS#8 format",
+            "description" : "Private key object for the service account in PKCS#8 format.",
             "validators" : {
               "required" : true
             },
@@ -36,7 +36,7 @@
           }, {
             "name" : "GCP_CLIENT_ID",
             "label" : "GCP Client ID",
-            "description" : "Service account client ID from Google Cloud Platform console",
+            "description" : "Service account client ID from Google Cloud Platform console.",
             "validators" : {
               "required" : true
             },
@@ -44,7 +44,7 @@
           }, {
             "name" : "GCP_PRIVATE_KEY_ID",
             "label" : "GCP Private Key ID",
-            "description" : "Private key identifier for the service account from Google Cloud Platform console",
+            "description" : "Private key identifier for the service account from Google Cloud Platform console.",
             "validators" : {
               "required" : true
             },
@@ -53,11 +53,11 @@
             "name" : "GCP_REGION",
             "label" : "GCP Region",
             "defaultValue" : "",
-            "description" : "Cloud storage location for specified bucket (required when creating a new bucket). See https://cloud.google.com/storage/docs/locations#available-locations for valid values"
+            "description" : "Cloud storage location for specified bucket (required when creating a new bucket). See https://cloud.google.com/storage/docs/locations#available-locations for valid values."
           }, {
             "name" : "GCP_PROJECT_ID",
             "label" : "GCP Project ID",
-            "description" : "ID number for project from GCP console (required when creating a new bucket)",
+            "description" : "ID number for project from GCP console (required when creating a new bucket).",
             "defaultValue" : ""
           } ]
         } ],
@@ -73,7 +73,7 @@
             "name" : "FILE_LIST",
             "label" : "File names from Google Cloud storage",
             "type" : "tags",
-            "description" : "List of input files in the Google Cloud storage. Files must have the same schema.",
+            "description" : "List of input files in the Google Cloud storage. Files must have the same schema. Examples: FileName.txt, FolderName/FileName.txt",
             "validators" : {
               "required" : true
             },
@@ -205,7 +205,7 @@
             "label" : "Output Mode",
             "type" : "combo",
             "defaultValue" : "append",
-            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nTruncate & Append: Truncates the table before inserting.\nReplace: Drops & Creates the table",
+            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created. Truncate & Append: Truncates the table before inserting. Replace: Drops & Creates the table",
             "data" : [ {
               "label" : "Append",
               "value" : "append"
