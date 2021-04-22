@@ -156,7 +156,7 @@
             "label" : "Output Mode",
             "type" : "combo",
             "defaultValue" : "append",
-            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nTruncate & Append: Truncates the table before inserting.\nReplace: Drops & Creates the table",
+            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created. Truncate & Append: Truncates the table before inserting. Replace: Drops & Creates the table",
             "data" : [ {
               "label" : "Append",
               "value" : "append"
