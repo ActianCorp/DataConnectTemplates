@@ -24,7 +24,7 @@
               "api_provider" : "actian",
               "uri" : "warehouse-list",
               "valueProperty" : "odbc",
-              "filterValue" : "Azure"
+              "filterValue" : "Azure,Google"
             },
             "validators" : {
               "required" : true
@@ -32,23 +32,38 @@
             "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
             "defaultValue" : ""
           }, {
-            "name" : "AVALANCHE_USERNAME",
-            "label" : "Username",
-            "defaultValue" : "dbuser",
-            "description" : "Avalanche database username used to connect to the database. The default user is dbuser.",
+                       "name" : "use_sso_checkbox",
+            "exclude" : true,
+            "label" : "Run As Current User",
+           "defaultValue" : true,
+            "type" : "checkbox",
+            "description" : "Run the upload as the current user andinto their namespace.  Uncheck to manually input Avalanche Credentials.",
             "dependsOn" : {
               "condition" : [ {
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
-               "logicalOp" : "OR",
                 "value" : ""
-              },{
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
-                "value" : "none"
               } ],
               "action" : "DISABLE"
+            }
+          },  {
+            "name" : "AVALANCHE_USERNAME",
+            "label" : "Username",
+           "required" : true,
+            "defaultValue" : "dbuser",
+            "description" : "Avalanche database username used to connect to the database. The default user is dbuser.",
+            "dependsOn" : {
+              "condition" : [  {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
+                "value" : "none"
+              },{
+                "field" : "use_sso_checkbox",
+               "logicalOp" : "AND",
+                "value" : "false"
+              }  ],
+              "action" : "DISPLAY"
             }
           }, {
             "name" : "AVALANCHE_PASSWORD",
@@ -60,16 +75,15 @@
             "dependsOn" : {
               "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
-                "value" : ""
-              },{
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
                 "value" : "none"
+              },{
+                "field" : "use_sso_checkbox",
+               "logicalOp" : "AND",
+                "value" : "false"
               } ],
-              "action" : "DISABLE"
+              "action" : "DISPLAY"
             }
           }, {
             "name" : "AVALANCHE_TABLE",
