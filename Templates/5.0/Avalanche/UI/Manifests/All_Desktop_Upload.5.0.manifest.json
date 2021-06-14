@@ -37,7 +37,7 @@
             "label" : "Run As Current User",
            "defaultValue" : true,
             "type" : "checkbox",
-            "description" : "Run the upload as the current user andinto their namespace.  Uncheck to manually input Avalanche Credentials.",
+            "description" : "Run the upload as the current user and into their namespace.  Uncheck to manually input Avalanche Credentials.",
             "dependsOn" : {
               "condition" : [ {
                 "field" : "AVALANCHE_CONNECT_STRING",
