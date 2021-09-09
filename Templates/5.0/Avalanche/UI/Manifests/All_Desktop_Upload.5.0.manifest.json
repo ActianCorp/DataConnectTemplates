@@ -415,6 +415,36 @@
               } ],
               "action" : "DISABLE"
             }
+          }, {
+            "name" : "TRUNCATION_HANDLING",
+            "type" : "ecombo",
+            "label" : "Truncation Handling",
+            "defaultValue" : "ERROR",
+            "description" : "Action transformation should take upon encountering a trunction incident.",
+            "data" : [ {
+              "label" : "Error",
+              "value" : "ERROR"
+            }, {
+              "label" : "Ignore",
+              "value" : "IGNORE"
+            }, {
+              "label" : "Warn",
+              "value" : "WARN"
+                      }],
+            "dependsOn" : {
+              "condition" : [   {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : ""
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
+              } ],
+              "action" : "DISABLE"
+            }
           }
                      ]
         }],

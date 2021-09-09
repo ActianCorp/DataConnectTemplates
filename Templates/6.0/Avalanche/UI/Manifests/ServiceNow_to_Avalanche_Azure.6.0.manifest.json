@@ -124,20 +124,61 @@
             "validators" : {
               "required" : true
             },
-            "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
+            "description" : "List of warehouses which exist in Microsoft Azure.",
             "defaultValue" : ""
+          }, {
+            "name" : "use_sso_checkbox",
+            "exclude" : true,
+            "label" : "Run As Current User",
+            "defaultValue" : true,
+            "type" : "checkbox",
+            "description" : "Execute as the current user and into their namespace in Avalanche.  Uncheck to manually input Avalanche credentials.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "AVALANCHE_USERNAME",
             "label" : "Username",
-            "defaultValue" : "dbuser",
-            "description" : "Avalanche database username used to connect to the database. The default user is dbuser."
+            "defaultValue" : "",
+            "description" : "Avalanche database username used to connect to the database.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+                "compareOp" : "NOT_EQ",
+                "logicalOp" : "AND",
+                "value" : "none"
+              }, {
+                "field" : "use_sso_checkbox",
+                "logicalOp" : "AND",
+                "value" : "false"
+              } ],
+              "action" : "DISPLAY"
+            }
           }, {
             "name" : "AVALANCHE_PASSWORD",
             "label" : "Password",
             "type" : "secret",
             "required" : true,
             "description" : "Connection database password used to connect to the database.",
-            "defaultValue" : ""
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "AVALANCHE_CONNECT_STRING",
+                "compareOp" : "NOT_EQ",
+                "logicalOp" : "AND",
+                "value" : "none"
+              }, {
+                "field" : "use_sso_checkbox",
+                "logicalOp" : "AND",
+                "value" : "false"
+              } ],
+              "action" : "DISPLAY"
+            }
           }, {
             "name" : "AVALANCHE_TABLE",
             "label" : "Table",

@@ -117,6 +117,12 @@
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      }, {
+        "id" : 18,
+        "name" : "AVALANCHE_SSO",
+        "value" : "False",
+        "encryptValue" : false,
+        "description" : "Required. Sets whether to use single sign-on instead of saved credentials during execution."
       } ]
     }
   } ]

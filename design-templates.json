@@ -16,22 +16,6 @@
     "entryPoint" : "Avalanche-6.0/Delimited_GCP_Storage_to_Avalanche_GCP.process.rtc",
     "minimumRuntimeVersion" : "11.6.0-87"
   }, {
-    "id" : "Delimited_GoogleDrive_to_Avalanche_AWS",
-    "name" : "Delimited Google Drive to Avalanche AWS",
-    "version" : "6.0",
-    "description" : "This template is used to quickly load large data files from Google Drive into Avalanche warehouse running on AWS platform. ",
-    "project" : "Avalanche",
-    "entryPoint" : "Avalanche-6.0/Delimited_GoogleDrive_to_Avalanche_AWS.process.rtc",
-    "minimumRuntimeVersion" : "11.6.0-87"
-  }, {
-    "id" : "Delimited_GoogleDrive_to_Avalanche_Azure",
-    "name" : "Delimited Google Drive to Avalanche Azure",
-    "version" : "6.0",
-    "description" : "This template is used to quickly load large data files from Google Drive into Avalanche warehouse.",
-    "project" : "Avalanche",
-    "entryPoint" : "Avalanche-6.0/Delimited_GoogleDrive_to_Avalanche_Azure.process.rtc",
-    "minimumRuntimeVersion" : "11.6.0-87"
-  }, {
     "id" : "Delimited_S3_to_Avalanche_AWS",
     "name" : "Delimited S3 to Avalanche AWS",
     "version" : "6.0",

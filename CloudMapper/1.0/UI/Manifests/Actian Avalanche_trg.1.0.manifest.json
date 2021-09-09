@@ -22,20 +22,60 @@
             "validators" : {
               "required" : true
             },
-            "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
+            "description" : "List of warehouses which exist in Avalanche.",
             "defaultValue" : ""
+          }, {
+            "name" : "TRG_AVALANCHE_USE_SSO",
+            "label" : "Run As Current User",
+            "defaultValue" : true,
+            "type" : "checkbox",
+            "description" : "Execute as the current user and into their namespace in Avalanche.  Uncheck to manually input Avalanche credentials.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "TRG_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "TRG_AVALANCHE_USERNAME",
             "label" : "Username",
-            "defaultValue" : "dbuser",
-            "description" : "Avalanche database username used to connect to the database. The default user is dbuser."
+            "defaultValue" : "",
+            "description" : "Avalanche database username used to connect to the database.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "TRG_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "NOT_EQ",
+                "logicalOp" : "AND",
+                "value" : "none"
+              }, {
+                "field" : "TRG_AVALANCHE_USE_SSO",
+                "logicalOp" : "AND",
+                "value" : "false"
+              } ],
+              "action" : "DISPLAY"
+            }
           }, {
             "name" : "TRG_AVALANCHE_PASSWORD",
             "label" : "Password",
             "type" : "secret",
             "required" : true,
             "description" : "Connection database password used to connect to the database.",
-            "defaultValue" : ""
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "TRG_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "NOT_EQ",
+                "logicalOp" : "AND",
+                "value" : "none"
+              }, {
+                "field" : "TRG_AVALANCHE_USE_SSO",
+                "logicalOp" : "AND",
+                "value" : "false"
+              } ],
+              "action" : "DISPLAY"
+            }
           }, {
             "name" : "TEST_CONNECTION",
             "type" : "action",
@@ -52,12 +92,26 @@
           } ]
         }, {
           "name" : "object-info",
-          "label" : "TARGET OBJECT",
+          "label" : "TARGET TABLE",
           "collapsible" : true,
           "fields" : [ {
-            "name" : "TRG_AVALANCHE_TABLE",
-            "label" : "Table",
-            "type" : "ecombo",
+            "type" : "radio",
+            "name" : "avalanche_table_new_or_existing",
+            "defaultValue" : "existing-table",
+            "exclude" : true,
+            "data" : [ {
+              "value" : "existing-table",
+              "label" : "Existing Table"
+            }, {
+              "value" : "new-table",
+              "label" : "New Table"
+            } ]
+          }, {
+            "name" : "TRG_EXISTING_TABLE",
+            "label" : "Existing Table",
+            "type" : "combo",
+            "defaultValue" : "",
+            "exclude" : true,
             "data" : {
               "api_provider" : "actian",
               "uri" : "dc-table-list",
@@ -74,19 +128,67 @@
             },
             "description" : "Avalanche table name where data will be written to.",
             "extraInfo" : {
-              "loadOnOpen" : true
+              "loadOnOpen" : true,
+              "searchable": true
             },
-            "listenToChanges" : [ {
-              "field" : {
-                "name" : "TRG_AVALANCHE_CONNECT_STRING"
-              }
-            }, {
-              "field" : {
-                "name" : "TRG_AVALANCHE_USERNAME"
-              }
-            } ],
-            "defaultValue" : ""
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "avalanche_table_new_or_existing",
+                "value" : "new-table",
+                "compareOp" : "NOT_EQ"
+              } ],
+              "action" : "DISPLAY"
+            }
           }, {
+            "name" : "TRG_NEW_TABLE",
+            "label" : "New Table",
+            "defaultValue" : "",
+            "exclude" : true,
+            "description" : "Avalanche table to create for writing data.",
+            "validators" : {
+              "required" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "avalanche_table_new_or_existing",
+                "value" : "new-table"
+              } ],
+              "action" : "DISPLAY"
+            }
+          }, {
+            "name" : "BROWSE_DATA",
+            "type" : "action",
+            "label" : "Preview the first 20 records",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "avalanche_table_new_or_existing",
+                "value" : "new-table",
+                "logicalOp" : "OR",
+                "compareOp" : "EQ"
+              }, {
+                "field" : "TRG_EXISTING_TABLE",
+                "value" : "",
+                "logicalOp" : "OR",
+                "compareOp" : "EQ"
+              } ],
+              "action" : "DISABLE"
+            },
+            "data" : {
+              "inProgressText" : "Fetching records... This could take up to 30 seconds.",
+              "successText" : "Records fetched",
+              "errorText" : "Could not retrieve records at the moment.",
+              "tryAgain" : true,
+              "handleSuccess" : true,
+              "params" : {
+                "nodeName" : "TARGET_1"
+              }
+            }
+          } ]
+        }, {
+          "name" : "output-mode",
+          "label" : "OUTPUT MODE",
+          "collapsible" : true,
+          "fields" : [ {
             "name" : "TRG_AVALANCHE_OUTPUT_MODE",
             "label" : "Output Mode",
             "type" : "combo",
@@ -99,7 +201,7 @@
               "label" : "Replace",
               "value" : "REPLACE"
             }, {
-              "label" : "Truncate And Append",
+              "label" : "Truncate and Append",
               "value" : "DELAPPEND"
             } ]
           }, {
@@ -137,15 +239,15 @@
           }, {
             "id" : 2,
             "name" : "TRG_AVALANCHE_USERNAME",
-            "value" : "dbuser",
+            "value" : "",
             "encryptValue" : false,
-            "description" : "Required. Username for connecting to the database using the ODBC DSN."
+            "description" : "Required. Username for connecting to the Avalanche database."
           }, {
             "id" : 3,
             "name" : "TRG_AVALANCHE_PASSWORD",
             "value" : "",
             "encryptValue" : false,
-            "description" : "Required. Password for connecting to the database using the ODBC DSN."
+            "description" : "Required. Password for connecting to the Avalanche database."
           }, {
             "id" : 4,
             "name" : "TRG_AVALANCHE_TABLE",
@@ -158,6 +260,12 @@
             "value" : "true",
             "encryptValue" : false,
             "description" : "Whether to grant table access to the 'dbadmingrp' group."
+          }, {
+            "id" : 6,
+            "name" : "TRG_AVALANCHE_USE_SSO",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Optional. Use single sign-on for connecting to Avalanche target."
           } ]
         }
       } ]
@@ -296,6 +404,6 @@
   "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
   "project" : "CloudMapper",
   "description" : "",
-  "minimumRuntimeVersion" : "11.5.2-70",
+  "minimumRuntimeVersion" : "11.6.0-87",
   "manifestFor" : "target"
 }

@@ -27,6 +27,12 @@
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      }, {
+        "id" : 5,
+        "name" : "AVALANCHE_SSO",
+        "value" : "False",
+        "encryptValue" : false,
+        "description" : "Required. Sets whether to use single sign-on instead of saved credentials during execution."
       } ]
     }
   }, {
@@ -34,19 +40,19 @@
     "name" : "T_DELIMITED_SOURCE_GDRIVE",
     "macros" : {
       "macro" : [ {
-        "id" : 5,
+        "id" : 6,
         "name" : "FILE_LIST",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Comma separated list of input files present in Google Drive. Files should have same schema."
       }, {
-        "id" : 6,
+        "id" : 7,
         "name" : "TOKEN_FOLDER",
         "value" : "",
         "encryptValue" : false,
         "description" : "Folder containing security token file for Google Drive."
       }, {
-        "id" : 7,
+        "id" : 8,
         "name" : "HEADER",
         "value" : "True",
         "encryptValue" : false,
@@ -58,25 +64,25 @@
     "name" : "T_AWS_S3",
     "macros" : {
       "macro" : [ {
-        "id" : 8,
+        "id" : 9,
         "name" : "AWS_BUCKET_NAME",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Name of the AWS storage bucket to pull the data from"
       }, {
-        "id" : 9,
+        "id" : 10,
         "name" : "AWS_ACCESS_KEY",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Credentials used to access AWS services."
       }, {
-        "id" : 10,
+        "id" : 11,
         "name" : "AWS_SECRET_KEY",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Credentials used to access AWS services."
       }, {
-        "id" : 11,
+        "id" : 12,
         "name" : "AWS_REGION",
         "value" : "US East (Ohio)",
         "encryptValue" : false,
