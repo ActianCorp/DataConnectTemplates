@@ -16,19 +16,28 @@
             },
             "defaultValue" : ""
           }, {
-            "name" : "SRC_SALESFORCE_PASSWORD",
+            "name" : "SRC_SFDC_PASSWORD",
             "label" : "Salesforce Password",
             "badge" : "Password",
+            "exclude" : true,
             "type" : "secret",
             "validators" : {
               "required" : true
-            },
-            "defaultValue" : ""
+            }
+          }, {
+            "name" : "SRC_SFDC_TOKEN",
+            "label" : "Salesforce Token",
+            "badge" : "Token",
+            "exclude" : true,
+            "validators" : {
+              "required" : true
+            }
           }, {
             "name" : "SRC_SALESFORCE_SANDBOX_MODE",
             "label" : "Sandbox Mode",
             "type" : "checkbox",
-            "defaultValue" : true,
+            "defaultValue" : false,
+            "description": "Sandbox mode is used to connect to your test instance of Salesforce. If you want to connect to your production instance, deselect this option.",
             "extraInfo" : {
               "isSessionPart" : true
             }
@@ -71,6 +80,28 @@
               "loadOnOpen" : true
             },
             "defaultValue" : ""
+          }, {
+            "name" : "BROWSE_DATA",
+            "type" : "action",
+            "label" : "Preview the first 20 records",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_SALESFORCE_TABLE",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            },
+            "data" : {
+              "inProgressText" : "Fetching records... This could take up to 30 seconds.",
+              "successText" : "Records fetched",
+              "errorText" : "Could not retrieve records at the moment.",
+              "tryAgain" : true,
+              "handleSuccess": true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
           } ]
         } ],
         "id" : "salesforce-source-connection"
@@ -218,6 +249,6 @@
   "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
   "project" : "CloudMapper",
   "description" : "",
-  "minimumRuntimeVersion" : "11.5.2-70",
+  "minimumRuntimeVersion" : "11.6.0-87",
   "manifestFor" : "source"
 }

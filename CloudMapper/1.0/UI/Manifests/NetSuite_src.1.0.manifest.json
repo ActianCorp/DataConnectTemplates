@@ -173,6 +173,28 @@
               "loadOnOpen" : true
             },
             "defaultValue" : ""
+          }, {
+            "name" : "BROWSE_DATA",
+            "type" : "action",
+            "label" : "Preview the first 20 records",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_NETSUITE_TABLE",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            },
+            "data" : {
+              "inProgressText" : "Fetching records... This could take up to 30 seconds.",
+              "successText" : "Records fetched",
+              "errorText" : "Could not retrieve records at the moment.",
+              "tryAgain" : true,
+              "handleSuccess": true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
           } ]
         } ],
         "id" : "netsuite-source-connection"
@@ -344,6 +366,6 @@
   "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
   "project" : "CloudMapper",
   "description" : "",
-  "minimumRuntimeVersion" : "11.5.2-70",
+  "minimumRuntimeVersion" : "11.6.0-87",
   "manifestFor" : "source"
 }

@@ -27,6 +27,12 @@
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      }, {
+        "id" : 5,
+        "name" : "AVALANCHE_SSO",
+        "value" : "False",
+        "encryptValue" : false,
+        "description" : "Required. Sets whether to use single sign-on instead of saved credentials during execution."
       } ]
     }
   }, {
@@ -34,31 +40,31 @@
     "name" : "T_AZURE",
     "macros" : {
       "macro" : [ {
-        "id" : 5,
+        "id" : 6,
         "name" : "AZURE_CLIENT_ID",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Credentials used to access azure services."
       }, {
-        "id" : 6,
+        "id" : 7,
         "name" : "AZURE_CLIENT_SECRET",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Credentials used to access azure services."
       }, {
-        "id" : 7,
+        "id" : 8,
         "name" : "AZURE_TENANT_ID",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Tenant ID (Directory ID) assigned by Azure Active Directory service."
       }, {
-        "id" : 8,
+        "id" : 9,
         "name" : "AZURE_CONTAINER_NAME",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Name of the container in azure storage account which contains data files"
       }, {
-        "id" : 9,
+        "id" : 10,
         "name" : "AZURE_STORAGE_ACCOUNT",
         "value" : "",
         "encryptValue" : false,
@@ -70,25 +76,25 @@
     "name" : "T_SERVICENOW",
     "macros" : {
       "macro" : [ {
-        "id" : 10,
+        "id" : 11,
         "name" : "SERVICENOW_URL",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. URL of the ServiceNow instance. For e.g. https://myorg.service-now.com"
       }, {
-        "id" : 11,
+        "id" : 12,
         "name" : "SERVICENOW_USERNAME",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Username for accessing ServiceNow instance."
       }, {
-        "id" : 12,
+        "id" : 13,
         "name" : "SERVICENOW_PASSWORD",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Password for accessing ServiceNow instance."
       }, {
-        "id" : 13,
+        "id" : 14,
         "name" : "SERVICENOW_TABLE",
         "value" : "",
         "encryptValue" : false,
