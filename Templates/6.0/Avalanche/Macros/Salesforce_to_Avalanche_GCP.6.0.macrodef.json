@@ -27,6 +27,12 @@
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      }, {
+        "id" : 5,
+        "name" : "AVALANCHE_SSO",
+        "value" : "False",
+        "encryptValue" : false,
+        "description" : "Required. Sets whether to use single sign-on instead of saved credentials during execution."
       } ]
     }
   }, {
@@ -34,47 +40,47 @@
     "name" : "T_GCP",
     "macros" : {
       "macro" : [ {
-        "id" : 5,
+        "id" : 6,
         "name" : "GCP_BUCKET",
         "value" : "",
         "encryptValue" : false,
-        "description" : "Name of the bucket in Google Cloud Platform storage to use for staging the data"
+        "description" : "Required. Name of the bucket in Google Cloud Platform storage to use for staging the data."
       }, {
-        "id" : 6,
+        "id" : 7,
         "name" : "GCP_CLIENT_EMAIL",
         "value" : "",
         "encryptValue" : false,
-        "description" : "Service account client email from GCP console"
+        "description" : "Required. Service account client email from Google Cloud Platform console."
       }, {
-        "id" : 7,
+        "id" : 8,
         "name" : "GCP_PRIVATE_KEY",
         "value" : "",
         "encryptValue" : false,
-        "description" : "Private key object for the service account in PKCS#8 format"
+        "description" : "Required. Private key object for the service account in PKCS#8 format."
       }, {
-        "id" : 8,
+        "id" : 9,
         "name" : "GCP_CLIENT_ID",
         "value" : "",
         "encryptValue" : false,
-        "description" : "Service account client ID from GCP console"
+        "description" : "Required. Service account client ID from Google Cloud Platform console."
       }, {
-        "id" : 9,
+        "id" : 10,
         "name" : "GCP_PRIVATE_KEY_ID",
         "value" : "",
         "encryptValue" : false,
-        "description" : "Private key identifier for the service account from GCP console"
+        "description" : "Required. Private key identifier for the service account from Google Cloud Platform console."
       }, {
-        "id" : 10,
+        "id" : 11,
         "name" : "GCP_REGION",
         "value" : "",
         "encryptValue" : false,
-        "description" : "Cloud storage location for specified bucket (optional)"
+        "description" : "Required when creating a new bucket. Cloud storage location for specified bucket. See https://cloud.google.com/storage/docs/locations#available-locations for valid values."
       }, {
-        "id" : 11,
+        "id" : 12,
         "name" : "GCP_PROJECT_ID",
         "value" : "",
         "encryptValue" : false,
-        "description" : "ID number for project from GCP console (required when creating a new bucket)"
+        "description" : "Required when creating a new bucket. ID number for project from Google Cloud Platform console."
       } ]
     }
   }, {
@@ -82,25 +88,25 @@
     "name" : "T_SALESFORCE",
     "macros" : {
       "macro" : [ {
-        "id" : 12,
+        "id" : 13,
         "name" : "SALESFORCE_USERNAME",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Salesforce username"
       }, {
-        "id" : 13,
+        "id" : 14,
         "name" : "SALESFORCE_PASSWORD",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Salesforce password"
       }, {
-        "id" : 14,
+        "id" : 15,
         "name" : "SALESFORCE_TABLE",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Name of the table or entity in Salesforce"
       }, {
-        "id" : 15,
+        "id" : 16,
         "name" : "SALESFORCE_SANDBOX_MODE",
         "value" : "True",
         "encryptValue" : false,

@@ -22,20 +22,60 @@
             "validators" : {
               "required" : true
             },
-            "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
+            "description" : "List of Avalanche Warehouses.",
             "defaultValue" : ""
+          }, {
+            "name" : "SRC_AVALANCHE_USE_SSO",
+            "label" : "Run As Current User",
+            "defaultValue" : true,
+            "type" : "checkbox",
+            "description" : "Execute as the current user and into their namespace in Avalanche.  Uncheck to manually input Avalanche credentials.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
           }, {
             "name" : "SRC_AVALANCHE_USERNAME",
             "label" : "Username",
-            "defaultValue" : "dbuser",
-            "description" : "Avalanche database username used to connect to the database. The default user is dbuser."
+            "defaultValue" : "",
+            "description" : "Avalanche database username used to connect to the database.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "NOT_EQ",
+                "logicalOp" : "AND",
+                "value" : "none"
+              }, {
+                "field" : "SRC_AVALANCHE_USE_SSO",
+                "logicalOp" : "AND",
+                "value" : "false"
+              } ],
+              "action" : "DISPLAY"
+            }
           }, {
             "name" : "SRC_AVALANCHE_PASSWORD",
             "label" : "Password",
             "type" : "secret",
             "required" : true,
             "description" : "Connection database password used to connect to the database.",
-            "defaultValue" : ""
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "NOT_EQ",
+                "logicalOp" : "AND",
+                "value" : "none"
+              }, {
+                "field" : "SRC_AVALANCHE_USE_SSO",
+                "logicalOp" : "AND",
+                "value" : "false"
+              } ],
+              "action" : "DISPLAY"
+            }
           }, {
             "name" : "TEST_CONNECTION",
             "type" : "action",
@@ -56,7 +96,7 @@
           "collapsible" : true,
           "fields" : [ {
             "name" : "SRC_AVALANCHE_TABLE",
-            "label" : "Table",
+            "label" : "Select a Table Name",
             "type" : "ecombo",
             "data" : {
               "api_provider" : "actian",
@@ -74,6 +114,28 @@
               "loadOnOpen" : true
             },
             "defaultValue" : ""
+          }, {
+            "name" : "BROWSE_DATA",
+            "type" : "action",
+            "label" : "Preview the first 20 records",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_AVALANCHE_TABLE",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+			},
+            "data" : {
+              "inProgressText" : "Fetching records... This could take up to 30 seconds.",
+              "successText" : "Records fetched",
+              "errorText" : "Could not retrieve records at the moment.",
+              "tryAgain" : true,
+              "handleSuccess": true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
           } ]
         } ],
         "id" : "avalanche-source-connection"
@@ -98,7 +160,7 @@
           }, {
             "id" : 2,
             "name" : "SRC_AVALANCHE_USERNAME",
-            "value" : "dbuser",
+            "value" : "",
             "encryptValue" : false,
             "description" : "Required. Username for connecting to the Avalanche database."
           }, {
@@ -113,6 +175,12 @@
             "value" : "",
             "encryptValue" : false,
             "description" : "Required. Name of the source table in Avalanche to read the data from."
+          }, {
+            "id" : 5,
+            "name" : "SRC_AVALANCHE_USE_SSO",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Optional. Use single sign-on for connecting to Avalanche source."
           } ]
         }
       } ]
@@ -230,6 +298,6 @@
   "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
   "project" : "CloudMapper",
   "description" : "",
-  "minimumRuntimeVersion" : "11.5.2-70",
+  "minimumRuntimeVersion" : "11.6.0-87",
   "manifestFor" : "source"
 }
