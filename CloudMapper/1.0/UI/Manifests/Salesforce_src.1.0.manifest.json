@@ -1,0 +1,254 @@
+{
+  "ui" : {
+    "pageInfo" : {
+      "salesforce-source-connection" : {
+        "group" : "source",
+        "paramGroups" : [ {
+          "name" : "connection-info",
+          "label" : "SALESFORCE CONNECTION",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "SRC_SALESFORCE_USERNAME",
+            "label" : "Salesforce Username",
+            "badge" : "Username",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_SFDC_PASSWORD",
+            "label" : "Salesforce Password",
+            "badge" : "Password",
+            "exclude" : true,
+            "type" : "secret",
+            "validators" : {
+              "required" : true
+            }
+          }, {
+            "name" : "SRC_SFDC_TOKEN",
+            "label" : "Salesforce Token",
+            "badge" : "Token",
+            "exclude" : true,
+            "validators" : {
+              "required" : true
+            }
+          }, {
+            "name" : "SRC_SALESFORCE_SANDBOX_MODE",
+            "label" : "Sandbox Mode",
+            "type" : "checkbox",
+            "defaultValue" : false,
+            "description": "Sandbox mode is used to connect to your test instance of Salesforce. If you want to connect to your production instance, deselect this option.",
+            "extraInfo" : {
+              "isSessionPart" : true
+            }
+          }, {
+            "name" : "TEST_CONNECTION",
+            "type" : "action",
+            "label" : "Test Credentials",
+            "data" : {
+              "inProgressText" : "Connecting",
+              "successText" : "Connection successful.",
+              "errorText" : "Connection failed.",
+              "tryAgain" : true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
+          } ]
+        }, {
+          "name" : "object-info",
+          "label" : "SOURCE OBJECT",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "SRC_SALESFORCE_TABLE",
+            "label" : "Object Name",
+            "type" : "ecombo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "dc-table-list",
+              "requestParams" : {
+                "nodeName" : "SOURCE_1",
+                "type" : "source"
+              }
+            },
+            "badge" : "Object",
+            "alias" : "Object Name",
+            "validators" : {
+              "required" : true
+            },
+            "extraInfo" : {
+              "loadOnOpen" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "BROWSE_DATA",
+            "type" : "action",
+            "label" : "Preview the first 20 records",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_SALESFORCE_TABLE",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            },
+            "data" : {
+              "inProgressText" : "Fetching records... This could take up to 30 seconds.",
+              "successText" : "Records fetched",
+              "errorText" : "Could not retrieve records at the moment.",
+              "tryAgain" : true,
+              "handleSuccess": true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
+          } ]
+        } ],
+        "id" : "salesforce-source-connection"
+      }
+    },
+    "wizardPages" : [ "salesforce-source-connection" ]
+  },
+  "connectInfo" : {
+    "type" : "source",
+    "connector" : "Salesforce",
+    "macrodef" : {
+      "macroSet" : [ {
+        "id" : 1,
+        "name" : "Salesforce",
+        "macros" : {
+          "macro" : [ {
+            "id" : 1,
+            "name" : "SRC_SALESFORCE_USERNAME",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Source Salesforce username"
+          }, {
+            "id" : 2,
+            "name" : "SRC_SALESFORCE_PASSWORD",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Source Salesforce password"
+          }, {
+            "id" : 3,
+            "name" : "SRC_SALESFORCE_TABLE",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Name of the source table or entity in Salesforce"
+          }, {
+            "id" : 4,
+            "name" : "SRC_SALESFORCE_SANDBOX_MODE",
+            "value" : "True",
+            "encryptValue" : false,
+            "description" : "Required. Whether the Salesforce source is a sandbox instance."
+          } ]
+        }
+      } ]
+    },
+    "datasetInfo" : {
+      "named_dataset" : {
+        "name" : "SOURCE_1",
+        "schemaMismatchOption" : "error",
+        "dataset" : {
+          "session_info" : {
+            "parts" : [ {
+              "name" : "username",
+              "value" : "$(SRC_SALESFORCE_USERNAME)"
+            }, {
+              "name" : "password",
+              "value" : "$(SRC_SALESFORCE_PASSWORD)"
+            } ],
+            "properties" : [ {
+              "name" : "proxyserver",
+              "value" : "$(SRC_SALESFORCE_PROXY_SERVER)"
+            }, {
+              "name" : "apiver",
+              "value" : "42.0"
+            } ],
+            "type" : "source",
+            "connector" : "Salesforce"
+          },
+          "connect_info" : {
+            "parts" : [ {
+              "name" : "table",
+              "value" : "$(SRC_SALESFORCE_TABLE)"
+            } ],
+            "properties" : [ {
+              "name" : "wherestmt",
+              "value" : "$(SRC_SALESFORCE_WHERE_STMT)"
+            }, {
+              "name" : "maxbatch",
+              "value" : "2000"
+            }, {
+              "name" : "proxyauth",
+              "value" : "$(SRC_SALESFORCE_PROXY_AUTH)"
+            }, {
+              "name" : "resendonerror",
+              "value" : "False"
+            }, {
+              "name" : "queryall",
+              "value" : "$(SRC_SALESFORCE_QUERY_ALL)"
+            }, {
+              "name" : "usesandbox",
+              "value" : "$(SRC_SALESFORCE_SANDBOX_MODE)"
+            }, {
+              "name" : "sessiontimeout",
+              "value" : "None"
+            }, {
+              "name" : "qualifiedrecordnames",
+              "value" : "Partial"
+            } ]
+          },
+          "schema_info" : {
+            "schema" : {
+              "root_defs" : [ {
+                "name" : "DocumentRoot",
+                "max_occurs" : "unbounded",
+                "choice" : [ {
+                  "name" : "R1",
+                  "rec_type_ref" : "R1"
+                } ]
+              } ],
+              "type_defs" : [ {
+                "name" : "R1",
+                "groups" : [ {
+                  "name" : "R1",
+                  "sequence" : [ ]
+                } ]
+              } ],
+              "rule_defs" : { },
+              "artifact_metadata" : { }
+            }
+          },
+          "filter_info" : {
+            "filter_record_limit" : 4294967295
+          },
+          "sample_info" : {
+            "type" : "All",
+            "start" : 0,
+            "end" : 0
+          },
+          "artifact_metadata" : {
+            "creator" : "ACTIAN",
+            "author" : "ACTIAN",
+            "version" : "1.0",
+            "date_created" : "20200724T14:05:36Z",
+            "date_modified" : "20200724T14:05:36Z"
+          }
+        }
+      }
+    }
+  },
+  "advanceMacros" : [ ],
+  "metaData" : {
+    "owner" : "ACTIAN"
+  },
+  "id" : "Salesforce_src",
+  "name" : "Salesforce",
+  "version" : "1.0",
+  "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
+  "project" : "CloudMapper",
+  "description" : "",
+  "minimumRuntimeVersion" : "11.6.0-87",
+  "manifestFor" : "source"
+}

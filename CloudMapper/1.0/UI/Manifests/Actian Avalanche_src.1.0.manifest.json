@@ -1,0 +1,303 @@
+{
+  "ui" : {
+    "pageInfo" : {
+      "avalanche-source-connection" : {
+        "title" : "Set Source Information",
+        "image" : "Actian_a_colored.svg",
+        "group" : "source",
+        "paramGroups" : [ {
+          "name" : "connection-info",
+          "label" : "ACTIAN AVALANCHE CONNECTION",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "SRC_AVALANCHE_CONNECT_STRING",
+            "label" : "Select Avalanche Warehouse",
+            "badge" : "Warehouse",
+            "type" : "combo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "warehouse-list",
+              "valueProperty" : "odbc"
+            },
+            "validators" : {
+              "required" : true
+            },
+            "description" : "List of Avalanche Warehouses.",
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_AVALANCHE_USE_SSO",
+            "label" : "Run As Current User",
+            "defaultValue" : true,
+            "type" : "checkbox",
+            "description" : "Execute as the current user and into their namespace in Avalanche.  Uncheck to manually input Avalanche credentials.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "SRC_AVALANCHE_USERNAME",
+            "label" : "Username",
+            "defaultValue" : "",
+            "description" : "Avalanche database username used to connect to the database.",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "NOT_EQ",
+                "logicalOp" : "AND",
+                "value" : "none"
+              }, {
+                "field" : "SRC_AVALANCHE_USE_SSO",
+                "logicalOp" : "AND",
+                "value" : "false"
+              } ],
+              "action" : "DISPLAY"
+            }
+          }, {
+            "name" : "SRC_AVALANCHE_PASSWORD",
+            "label" : "Password",
+            "type" : "secret",
+            "required" : true,
+            "description" : "Connection database password used to connect to the database.",
+            "defaultValue" : "",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_AVALANCHE_CONNECT_STRING",
+                "compareOp" : "NOT_EQ",
+                "logicalOp" : "AND",
+                "value" : "none"
+              }, {
+                "field" : "SRC_AVALANCHE_USE_SSO",
+                "logicalOp" : "AND",
+                "value" : "false"
+              } ],
+              "action" : "DISPLAY"
+            }
+          }, {
+            "name" : "TEST_CONNECTION",
+            "type" : "action",
+            "label" : "Test Credentials",
+            "data" : {
+              "inProgressText" : "Connecting",
+              "successText" : "Connection successful.",
+              "errorText" : "Connection failed.",
+              "tryAgain" : true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
+          } ]
+        }, {
+          "name" : "object-info",
+          "label" : "SOURCE TABLE",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "SRC_AVALANCHE_TABLE",
+            "label" : "Select a Table Name",
+            "type" : "ecombo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "dc-table-list",
+              "requestParams" : {
+                "nodeName" : "SOURCE_1",
+                "type" : "source"
+              }
+            },
+            "validators" : {
+              "required" : true
+            },
+            "description" : "Name of the source table in Avalanche to read the data from.",
+            "extraInfo" : {
+              "loadOnOpen" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "BROWSE_DATA",
+            "type" : "action",
+            "label" : "Preview the first 20 records",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_AVALANCHE_TABLE",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+			},
+            "data" : {
+              "inProgressText" : "Fetching records... This could take up to 30 seconds.",
+              "successText" : "Records fetched",
+              "errorText" : "Could not retrieve records at the moment.",
+              "tryAgain" : true,
+              "handleSuccess": true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
+          } ]
+        } ],
+        "id" : "avalanche-source-connection"
+      }
+    },
+    "wizardPages" : [ "avalanche-source-connection" ]
+  },
+  "connectInfo" : {
+    "type" : "source",
+    "connector" : "Actian Avalanche",
+    "macrodef" : {
+      "macroSet" : [ {
+        "id" : 1,
+        "name" : "Actian Avalanche",
+        "macros" : {
+          "macro" : [ {
+            "id" : 1,
+            "name" : "SRC_AVALANCHE_CONNECT_STRING",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. ODBC Connection string for connecting to Avalanche database. You can obtain this information from Avalanche portal."
+          }, {
+            "id" : 2,
+            "name" : "SRC_AVALANCHE_USERNAME",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Username for connecting to the Avalanche database."
+          }, {
+            "id" : 3,
+            "name" : "SRC_AVALANCHE_PASSWORD",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Password for connecting to the Avalanche database."
+          }, {
+            "id" : 4,
+            "name" : "SRC_AVALANCHE_TABLE",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Name of the source table in Avalanche to read the data from."
+          }, {
+            "id" : 5,
+            "name" : "SRC_AVALANCHE_USE_SSO",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Optional. Use single sign-on for connecting to Avalanche source."
+          } ]
+        }
+      } ]
+    },
+    "datasetInfo" : {
+      "named_dataset" : {
+        "name" : "SOURCE_1",
+        "schemaMismatchOption" : "error",
+        "dataset" : {
+          "session_info" : {
+            "parts" : [ {
+              "name" : "username",
+              "value" : "$(SRC_AVALANCHE_USERNAME)"
+            }, {
+              "name" : "password",
+              "value" : "$(SRC_AVALANCHE_PASSWORD)"
+            } ],
+            "properties" : [ {
+              "name" : "dsntype",
+              "value" : "User & System"
+            }, {
+              "name" : "drivercompletion",
+              "value" : "complete"
+            }, {
+              "name" : "modifydopts",
+              "value" : "True"
+            }, {
+              "name" : "driveropts",
+              "value" : "$(SRC_AVALANCHE_CONNECT_STRING)"
+            }, {
+              "name" : "txnisolation",
+              "value" : "serializable"
+            } ],
+            "type" : "source",
+            "connector" : "Actian Avalanche"
+          },
+          "connect_info" : {
+            "parts" : [ {
+              "name" : "table",
+              "value" : "$(SRC_AVALANCHE_TABLE)"
+            } ],
+            "properties" : [ {
+              "name" : "encoding",
+              "value" : "OEM"
+            }, {
+              "name" : "wherestmt",
+              "value" : "$(SRC_AVALANCHE_WHERE_STMT)"
+            }, {
+              "name" : "systables",
+              "value" : "False"
+            }, {
+              "name" : "views",
+              "value" : "True"
+            }, {
+              "name" : "synonyms",
+              "value" : "False"
+            }, {
+              "name" : "cursortype",
+              "value" : "forward only"
+            }, {
+              "name" : "identifierquotes",
+              "value" : "Default"
+            }, {
+              "name" : "maxdatalen",
+              "value" : "1048576"
+            } ]
+          },
+          "schema_info" : {
+            "schema" : {
+              "root_defs" : [ {
+                "name" : "DocumentRoot",
+                "max_occurs" : "unbounded",
+                "choice" : [ {
+                  "name" : "R1",
+                  "rec_type_ref" : "R1"
+                } ]
+              } ],
+              "type_defs" : [ {
+                "name" : "R1",
+                "groups" : [ {
+                  "name" : "R1",
+                  "sequence" : [ ]
+                } ]
+              } ],
+              "rule_defs" : { },
+              "artifact_metadata" : { }
+            }
+          },
+          "filter_info" : {
+            "filter_record_limit" : 2147483647
+          },
+          "sample_info" : {
+            "type" : "All",
+            "start" : 0,
+            "end" : 0
+          },
+          "artifact_metadata" : {
+            "creator" : "ACTIAN",
+            "author" : "ACTIAN",
+            "version" : "1.0",
+            "date_created" : "20200803T17:43:12Z",
+            "date_modified" : "20200803T17:43:12Z"
+          }
+        }
+      }
+    }
+  },
+  "advanceMacros" : [ ],
+  "metaData" : {
+    "owner" : "ACTIAN"
+  },
+  "id" : "Actian Avalanche_src",
+  "name" : "Actian Avalanche",
+  "version" : "1.0",
+  "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
+  "project" : "CloudMapper",
+  "description" : "",
+  "minimumRuntimeVersion" : "11.6.0-87",
+  "manifestFor" : "source"
+}

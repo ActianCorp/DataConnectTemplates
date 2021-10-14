@@ -29,7 +29,7 @@
             "validators" : {
               "required" : true
             },
-            "description" : "List of warehouses which exist in [AWS|Microsoft Azure].",
+            "description" : "List of warehouses which exist in [AWS|Microsoft Azure|Google Cloud].",
             "defaultValue" : ""
           }, {
                        "name" : "use_sso_checkbox",
@@ -37,7 +37,7 @@
             "label" : "Run As Current User",
            "defaultValue" : true,
             "type" : "checkbox",
-            "description" : "Run the upload as the current user andinto their namespace.  Uncheck to manually input Avalanche Credentials.",
+            "description" : "Run the upload as the current user and into their namespace.  Uncheck to manually input Avalanche Credentials.",
             "dependsOn" : {
               "condition" : [ {
                 "field" : "AVALANCHE_CONNECT_STRING",
@@ -401,6 +401,36 @@
                       }, {
               "label" : "Unicode encoding form UTF-8",
               "value" : "UTF8"
+                      }],
+            "dependsOn" : {
+              "condition" : [   {
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : ""
+              },{
+                "field" : "AVALANCHE_CONNECT_STRING",
+               "compareOp" : "EQ",
+               "logicalOp" : "OR",
+                "value" : "none"
+              } ],
+              "action" : "DISABLE"
+            }
+          }, {
+            "name" : "TRUNCATION_HANDLING",
+            "type" : "ecombo",
+            "label" : "Truncation Handling",
+            "defaultValue" : "ERROR",
+            "description" : "Action transformation should take upon encountering a trunction incident.",
+            "data" : [ {
+              "label" : "Error",
+              "value" : "ERROR"
+            }, {
+              "label" : "Ignore",
+              "value" : "IGNORE"
+            }, {
+              "label" : "Warn",
+              "value" : "WARN"
                       }],
             "dependsOn" : {
               "condition" : [   {

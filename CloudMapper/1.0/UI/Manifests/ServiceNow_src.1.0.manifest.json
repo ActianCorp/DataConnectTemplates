@@ -1,0 +1,213 @@
+{
+  "ui" : {
+    "pageInfo" : {
+      "servicenow-source-connection" : {
+        "group" : "source",
+        "paramGroups" : [ {
+          "name" : "connection-info",
+          "label" : "SERVICENOW CONNECTION",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "SRC_SERVICENOW_URL",
+            "label" : "ServiceNow Instance URL",
+            "description" : "URL of the ServiceNow instance. For e.g. https://myorg.service-now.com",
+            "badge" : "Instance URL",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_SERVICENOW_USERNAME",
+            "label" : "ServiceNow Username",
+            "badge" : "Username",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_SERVICENOW_PASSWORD",
+            "label" : "ServiceNow Password",
+            "badge" : "Password",
+            "type" : "secret",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "TEST_CONNECTION",
+            "type" : "action",
+            "label" : "Test Credentials",
+            "data" : {
+              "inProgressText" : "Connecting",
+              "successText" : "Connection successful.",
+              "errorText" : "Connection failed.",
+              "tryAgain" : true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
+          } ]
+        }, {
+          "name" : "object-info",
+          "label" : "SOURCE OBJECT",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "SRC_SERVICENOW_TABLE",
+            "type" : "ecombo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "dc-table-list",
+              "requestParams" : {
+                "nodeName" : "SOURCE_1",
+                "type" : "source"
+              }
+            },
+            "label" : "Object Name",
+            "badge" : "Object",
+            "alias" : "Object Name",
+            "validators" : {
+              "required" : true
+            },
+            "extraInfo" : {
+              "loadOnOpen" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "BROWSE_DATA",
+            "type" : "action",
+            "label" : "Preview the first 20 records",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_SERVICENOW_TABLE",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            },
+            "data" : {
+              "inProgressText" : "Fetching records... This could take up to 30 seconds.",
+              "successText" : "Records fetched",
+              "errorText" : "Could not retrieve records at the moment.",
+              "tryAgain" : true,
+              "handleSuccess": true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
+          } ]
+        } ],
+        "id" : "servicenow-source-connection"
+      }
+    },
+    "wizardPages" : [ "servicenow-source-connection" ]
+  },
+  "connectInfo" : {
+    "type" : "source",
+    "connector" : "ServiceNow",
+    "macrodef" : {
+      "macroSet" : [ {
+        "id" : 1,
+        "name" : "ServiceNow",
+        "macros" : {
+          "macro" : [ {
+            "id" : 1,
+            "name" : "SRC_SERVICENOW_URL",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. URL of the ServiceNow instance. For e.g. https://myorg.service-now.com"
+          }, {
+            "id" : 2,
+            "name" : "SRC_SERVICENOW_USERNAME",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Username for accessing ServiceNow instance."
+          }, {
+            "id" : 3,
+            "name" : "SRC_SERVICENOW_PASSWORD",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Password for accessing ServiceNow instance."
+          }, {
+            "id" : 4,
+            "name" : "SRC_SERVICENOW_TABLE",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Name of the table in ServiceNow."
+          } ]
+        }
+      } ]
+    },
+    "datasetInfo" : {
+      "named_dataset" : {
+        "name" : "SOURCE_1",
+        "schemaMismatchOption" : "error",
+        "dataset" : {
+          "session_info" : {
+            "parts" : [ {
+              "name" : "server",
+              "value" : "$(SRC_SERVICENOW_URL)"
+            }, {
+              "name" : "user",
+              "value" : "$(SRC_SERVICENOW_USERNAME)"
+            }, {
+              "name" : "password",
+              "value" : "$(SRC_SERVICENOW_PASSWORD)"
+            } ],
+            "type" : "source",
+            "connector" : "ServiceNow"
+          },
+          "connect_info" : {
+            "parts" : [ {
+              "name" : "table",
+              "value" : "$(SRC_SERVICENOW_TABLE)"
+            } ],
+            "properties" : [ {
+              "name" : "batchsize",
+              "value" : "10000"
+            }, {
+              "name" : "query",
+              "value" : ""
+            }, {
+              "name" : "use_display",
+              "value" : "False"
+            } ]
+          },
+          "schema_info" : {
+            "schema" : {
+              "root_defs" : [ {
+                "name" : "DocumentRoot",
+                "choice" : [ ]
+              } ],
+              "type_defs" : [ ],
+              "rule_defs" : { }
+            }
+          },
+          "sample_info" : {
+            "type" : "All",
+            "start" : 0,
+            "end" : 0
+          },
+          "artifact_metadata" : {
+            "creator" : "ACTIAN",
+            "author" : "ACTIAN",
+            "version" : "1.0",
+            "date_created" : "20201030T15:31:47Z",
+            "date_modified" : "20201030T15:31:47Z"
+          }
+        }
+      }
+    }
+  },
+  "advanceMacros" : [ ],
+  "metaData" : {
+    "owner" : "ACTIAN"
+  },
+  "id" : "ServiceNow_src",
+  "name" : "ServiceNow",
+  "version" : "1.0",
+  "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
+  "project" : "CloudMapper",
+  "description" : "",
+  "minimumRuntimeVersion" : "11.6.0-87",
+  "manifestFor" : "source"
+}

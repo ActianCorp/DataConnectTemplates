@@ -57,6 +57,12 @@
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Name of the table in Avalanche, the data will be written to."
+      }, {
+        "id" : 9,
+        "name" : "AVALANCHE_SSO",
+        "value" : "False",
+        "encryptValue" : false,
+        "description" : "Required. Sets whether to use single sign-on instead of saved credentials during execution."
       } ]
     }
   }, {
@@ -64,13 +70,13 @@
     "name" : "T_DELIMITED_SOURCE_S3",
     "macros" : {
       "macro" : [ {
-        "id" : 9,
+        "id" : 10,
         "name" : "S3_FILE_LIST",
         "value" : "",
         "encryptValue" : false,
         "description" : "Required. Comma separated list of input files present in the S3 bucket. Files should have same schema."
       }, {
-        "id" : 10,
+        "id" : 11,
         "name" : "HEADER",
         "value" : "True",
         "encryptValue" : false,

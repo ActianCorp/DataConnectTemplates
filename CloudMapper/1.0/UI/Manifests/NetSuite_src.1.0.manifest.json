@@ -1,0 +1,371 @@
+{
+  "ui" : {
+    "pageInfo" : {
+      "netsuite-source-connection" : {
+        "group" : "source",
+        "paramGroups" : [ {
+          "name" : "connection-info",
+          "label" : "NETSUITE CONNECTION",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "SRC_NETSUITE_ACCOUNT",
+            "label" : "Netsuite Account ID",
+            "badge" : "Account",
+            "validators" : {
+              "required" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "src_netsuite_auth_type",
+            "label" : "Authentication",
+            "type" : "radio",
+            "exclude" : "true",
+            "data" : [ {
+              "value" : "password-based",
+              "label" : "Password Based"
+            }, {
+              "value" : "token-based",
+              "label" : "Token Based"
+            } ],
+            "defaultValue" : "password-based",
+            "validators" : {
+              "required" : true
+            }
+          }, {
+            "name" : "SRC_NETSUITE_EMAIL",
+            "label" : "Email Address",
+            "validators" : {
+              "required" : true,
+              "email" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "src_netsuite_auth_type",
+                "value" : "password-based"
+              } ],
+              "action" : "DISPLAY"
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_NETSUITE_PASSWORD",
+            "label" : "Password",
+            "type" : "secret",
+            "validators" : {
+              "required" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "src_netsuite_auth_type",
+                "value" : "password-based"
+              } ],
+              "action" : "DISPLAY"
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_NETSUITE_APPLICATION_ID",
+            "label" : "Application ID",
+            "description" : "Application ID is required for password based authentication. Generate an Application ID under Integrations in NetSuite.",
+            "validators" : {
+              "required" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "src_netsuite_auth_type",
+                "value" : "password-based"
+              } ],
+              "action" : "DISPLAY"
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_NETSUITE_TOKEN_ID",
+            "label" : "Token ID",
+            "validators" : {
+              "required" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "src_netsuite_auth_type",
+                "value" : "token-based"
+              } ],
+              "action" : "DISPLAY"
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_NETSUITE_TOKEN_SECRET",
+            "label" : "Token Secret",
+            "type" : "secret",
+            "validators" : {
+              "required" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "src_netsuite_auth_type",
+                "value" : "token-based"
+              } ],
+              "action" : "DISPLAY"
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_NETSUITE_CONSUMER_KEY",
+            "label" : "Consumer Key",
+            "validators" : {
+              "required" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "src_netsuite_auth_type",
+                "value" : "token-based"
+              } ],
+              "action" : "DISPLAY"
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "SRC_NETSUITE_CONSUMER_SECRET",
+            "label" : "Consumer Secret",
+            "type" : "secret",
+            "validators" : {
+              "required" : true
+            },
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "src_netsuite_auth_type",
+                "value" : "token-based"
+              } ],
+              "action" : "DISPLAY"
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "TEST_CONNECTION",
+            "type" : "action",
+            "label" : "Test Credentials",
+            "data" : {
+              "inProgressText" : "Connecting",
+              "successText" : "Connection successful.",
+              "errorText" : "Connection failed.",
+              "tryAgain" : true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
+          } ]
+        }, {
+          "name" : "object-info",
+          "label" : "SOURCE OBJECT",
+          "collapsible" : true,
+          "fields" : [ {
+            "name" : "SRC_NETSUITE_TABLE",
+            "type" : "ecombo",
+            "data" : {
+              "api_provider" : "actian",
+              "uri" : "dc-table-list",
+              "requestParams" : {
+                "nodeName" : "SOURCE_1",
+                "type" : "source"
+              }
+            },
+            "label" : "Object Name",
+            "badge" : "Object",
+            "alias" : "Object Name",
+            "validators" : {
+              "required" : true
+            },
+            "extraInfo" : {
+              "loadOnOpen" : true
+            },
+            "defaultValue" : ""
+          }, {
+            "name" : "BROWSE_DATA",
+            "type" : "action",
+            "label" : "Preview the first 20 records",
+            "dependsOn" : {
+              "condition" : [ {
+                "field" : "SRC_NETSUITE_TABLE",
+                "compareOp" : "EQ",
+                "value" : ""
+              } ],
+              "action" : "DISABLE"
+            },
+            "data" : {
+              "inProgressText" : "Fetching records... This could take up to 30 seconds.",
+              "successText" : "Records fetched",
+              "errorText" : "Could not retrieve records at the moment.",
+              "tryAgain" : true,
+              "handleSuccess": true,
+              "params" : {
+                "nodeName" : "SOURCE_1"
+              }
+            }
+          } ]
+        } ],
+        "id" : "netsuite-source-connection"
+      }
+    },
+    "wizardPages" : [ "netsuite-source-connection" ]
+  },
+  "connectInfo" : {
+    "type" : "source",
+    "connector" : "NetSuite",
+    "macrodef" : {
+      "macroSet" : [ {
+        "id" : 1,
+        "name" : "NetSuite",
+        "macros" : {
+          "macro" : [ {
+            "id" : 1,
+            "name" : "SRC_NETSUITE_ACCOUNT",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. The name of the Netsuite Account."
+          }, {
+            "id" : 2,
+            "name" : "SRC_NETSUITE_EMAIL",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Email ID used to access the account."
+          }, {
+            "id" : 3,
+            "name" : "SRC_NETSUITE_PASSWORD",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Password used for accessing the account."
+          }, {
+            "id" : 4,
+            "name" : "SRC_NETSUITE_APPLICATION_ID",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. ApplicationID to use for accessing Netsuite Account using webservice."
+          }, {
+            "id" : 5,
+            "name" : "SRC_NETSUITE_TOKEN_ID",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Token ID used in token based authentication."
+          }, {
+            "id" : 6,
+            "name" : "SRC_NETSUITE_TOKEN_SECRET",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Token Secret used in token based authentication."
+          }, {
+            "id" : 7,
+            "name" : "SRC_NETSUITE_CONSUMER_KEY",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Consumer key used in token based authentication."
+          }, {
+            "id" : 8,
+            "name" : "SRC_NETSUITE_CONSUMER_SECRET",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Consumer secret used in token based authentication."
+          }, {
+            "id" : 9,
+            "name" : "SRC_NETSUITE_TABLE",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Name of the table in Netsuite."
+          } ]
+        }
+      } ]
+    },
+    "datasetInfo" : {
+      "named_dataset" : {
+        "name" : "SOURCE_1",
+        "schemaMismatchOption" : "error",
+        "dataset" : {
+          "session_info" : {
+            "parts" : [ {
+              "name" : "account",
+              "value" : "$(SRC_NETSUITE_ACCOUNT)"
+            }, {
+              "name" : "email",
+              "value" : "$(SRC_NETSUITE_EMAIL)"
+            }, {
+              "name" : "password",
+              "value" : "$(SRC_NETSUITE_PASSWORD)"
+            }, {
+              "name" : "applicationid",
+              "value" : "$(SRC_NETSUITE_APPLICATION_ID)"
+            }, {
+              "name" : "tokenid",
+              "value" : "$(SRC_NETSUITE_TOKEN_ID)"
+            }, {
+              "name" : "tokensecret",
+              "value" : "$(SRC_NETSUITE_TOKEN_SECRET)"
+            }, {
+              "name" : "consumerkey",
+              "value" : "$(SRC_NETSUITE_CONSUMER_KEY)"
+            }, {
+              "name" : "consumersecret",
+              "value" : "$(SRC_NETSUITE_CONSUMER_SECRET)"
+            } ],
+            "type" : "source",
+            "connector" : "NetSuite"
+          },
+          "connect_info" : {
+            "parts" : [ {
+              "name" : "Table",
+              "value" : "$(SRC_NETSUITE_TABLE)"
+            } ],
+            "properties" : [ {
+              "name" : "role",
+              "value" : ""
+            }, {
+              "name" : "pageSize",
+              "value" : "1000"
+            }, {
+              "name" : "SavedSearchId",
+              "value" : ""
+            }, {
+              "name" : "customizationLevel",
+              "value" : "Full"
+            }, {
+              "name" : "dataType",
+              "value" : "Record"
+            }, {
+              "name" : "UseUILabel",
+              "value" : "True"
+            }, {
+              "name" : "nestChildren",
+              "value" : "false"
+            } ]
+          },
+          "schema_info" : {
+            "schema" : {
+              "root_defs" : [ {
+                "name" : "DocumentRoot",
+                "choice" : [ ]
+              } ],
+              "type_defs" : [ ],
+              "rule_defs" : { }
+            }
+          },
+          "sample_info" : {
+            "type" : "All",
+            "start" : 0,
+            "end" : 0
+          },
+          "artifact_metadata" : {
+            "creator" : "ACTIAN",
+            "author" : "ACTIAN",
+            "version" : "1.0",
+            "date_created" : "20201030T15:29:32Z",
+            "date_modified" : "20201030T15:29:32Z"
+          }
+        }
+      }
+    }
+  },
+  "advanceMacros" : [ ],
+  "metaData" : {
+    "owner" : "ACTIAN"
+  },
+  "id" : "NetSuite_src",
+  "name" : "NetSuite",
+  "version" : "1.0",
+  "entryPoint" : "DataIntegration-1.0/DataIntegration.process.rtc",
+  "project" : "CloudMapper",
+  "description" : "",
+  "minimumRuntimeVersion" : "11.6.0-87",
+  "manifestFor" : "source"
+}

@@ -1,0 +1,83 @@
+{
+  "name" : "DataTransformation",
+  "description" : "",
+  "entryPoint" : "DataTransformation.map",
+  "logLevel" : "INFO",
+  "logfileName" : "$(LOGS)/TransformationDesignBaseMap.log",
+  "flushLog" : false,
+  "clearLog" : true,
+  "macroSetNames" : [ ],
+  "profiling" : false,
+  "macroDefinitions" : [ ],
+  "datasetConfigs" : {
+    "namedDatasets" : [ {
+      "name" : "SOURCE_1",
+      "schemaMismatchOption" : "error",
+      "dataset" : {
+        "session_info" : {
+          "type" : "source",
+          "connector" : ""
+        },
+        "connect_info" : { },
+        "schema_info" : {
+          "schema" : {
+            "root_defs" : [ {
+              "name" : "DocumentRoot",
+              "max_occurs" : "unbounded",
+              "choice" : [ ]
+            } ],
+            "type_defs" : [ ],
+            "rule_defs" : { }
+          }
+        },
+        "sample_info" : {
+          "type" : "All",
+          "start" : 0,
+          "end" : 0
+        }
+      }
+    }, {
+      "name" : "TARGET_1",
+      "schemaMismatchOption" : "error",
+      "dataset" : {
+        "session_info" : {
+          "type" : "target",
+          "connector" : ""
+        },
+        "connect_info" : { },
+        "schema_info" : {
+          "schema" : {
+            "root_defs" : [ {
+              "name" : "DocumentRoot",
+              "max_occurs" : "unbounded",
+              "choice" : [ ]
+            } ],
+            "type_defs" : [ ],
+            "rule_defs" : { }
+          }
+        },
+        "sample_info" : {
+          "type" : "All",
+          "start" : 0,
+          "end" : 0
+        }
+      }
+    } ],
+    "namedSessions" : [ ]
+  },
+  "transformOptions" : {
+    "nullOption" : "ERROR",
+    "overflowOption" : "ERROR",
+    "truncationOption" : "ERROR"
+  },
+  "profile_mask" : 65535,
+  "profile_output_file" : "profile.out",
+  "artifact_metadata" : {
+    "description" : "",
+    "creator" : "ACTIAN",
+    "author" : "ACTIAN",
+    "version" : "1.6",
+    "date_created" : "2020-07-24T13:29:25.39124+05:30",
+    "date_modified" : "2020-11-02T23:10:48.404+05:30"
+  }
+}
