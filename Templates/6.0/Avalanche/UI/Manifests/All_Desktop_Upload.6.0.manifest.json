@@ -140,7 +140,7 @@
               "value" : "replace"
             }, {
               "label" : "Truncate And Append",
-              "value" : "delete_append"
+              "value" : "truncate"
             } ],
             "dependsOn" : {
               "condition" : [  {
