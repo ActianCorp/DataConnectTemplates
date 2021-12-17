@@ -16,10 +16,10 @@
             },
             "defaultValue" : ""
           }, {
-            "name" : "src_netsuite_auth_type",
+            "name" : "SRC_NETSUITE_AUTH_TYPE",
             "label" : "Authentication",
             "type" : "radio",
-            "exclude" : "true",
+            "exclude" : false,
             "data" : [ {
               "value" : "password-based",
               "label" : "Password Based"
@@ -40,7 +40,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "src_netsuite_auth_type",
+                "field" : "SRC_NETSUITE_AUTH_TYPE",
                 "value" : "password-based"
               } ],
               "action" : "DISPLAY"
@@ -55,7 +55,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "src_netsuite_auth_type",
+                "field" : "SRC_NETSUITE_AUTH_TYPE",
                 "value" : "password-based"
               } ],
               "action" : "DISPLAY"
@@ -70,7 +70,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "src_netsuite_auth_type",
+                "field" : "SRC_NETSUITE_AUTH_TYPE",
                 "value" : "password-based"
               } ],
               "action" : "DISPLAY"
@@ -84,7 +84,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "src_netsuite_auth_type",
+                "field" : "SRC_NETSUITE_AUTH_TYPE",
                 "value" : "token-based"
               } ],
               "action" : "DISPLAY"
@@ -99,7 +99,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "src_netsuite_auth_type",
+                "field" : "SRC_NETSUITE_AUTH_TYPE",
                 "value" : "token-based"
               } ],
               "action" : "DISPLAY"
@@ -113,7 +113,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "src_netsuite_auth_type",
+                "field" : "SRC_NETSUITE_AUTH_TYPE",
                 "value" : "token-based"
               } ],
               "action" : "DISPLAY"
@@ -128,7 +128,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "src_netsuite_auth_type",
+                "field" : "SRC_NETSUITE_AUTH_TYPE",
                 "value" : "token-based"
               } ],
               "action" : "DISPLAY"
@@ -167,7 +167,10 @@
             "badge" : "Object",
             "alias" : "Object Name",
             "validators" : {
-              "required" : true
+              "required" : true,
+              "custom" : {
+                "message" : "Expressions may not be retained."
+              }
             },
             "extraInfo" : {
               "loadOnOpen" : true

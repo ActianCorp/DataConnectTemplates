@@ -96,9 +96,9 @@
           "collapsible" : true,
           "fields" : [ {
             "type" : "radio",
-            "name" : "avalanche_table_new_or_existing",
+            "name" : "AVALANCHE_TABLE_NEW_OR_EXISTING",
             "defaultValue" : "existing-table",
-            "exclude" : true,
+            "exclude" : false,
             "data" : [ {
               "value" : "existing-table",
               "label" : "Existing Table"
@@ -133,7 +133,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "avalanche_table_new_or_existing",
+                "field" : "AVALANCHE_TABLE_NEW_OR_EXISTING",
                 "value" : "new-table",
                 "compareOp" : "NOT_EQ"
               } ],
@@ -150,7 +150,7 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "avalanche_table_new_or_existing",
+                "field" : "AVALANCHE_TABLE_NEW_OR_EXISTING",
                 "value" : "new-table"
               } ],
               "action" : "DISPLAY"
@@ -161,7 +161,7 @@
             "label" : "Preview the first 20 records",
             "dependsOn" : {
               "condition" : [ {
-                "field" : "avalanche_table_new_or_existing",
+                "field" : "AVALANCHE_TABLE_NEW_OR_EXISTING",
                 "value" : "new-table",
                 "logicalOp" : "OR",
                 "compareOp" : "EQ"
