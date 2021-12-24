@@ -107,7 +107,10 @@
               }
             },
             "validators" : {
-              "required" : true
+              "required" : true,
+              "custom" : {
+                "message" : "Expressions may not be retained."
+              }
             },
             "description" : "Name of the source table in Avalanche to read the data from.",
             "extraInfo" : {

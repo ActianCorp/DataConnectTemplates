@@ -19,7 +19,7 @@
             "name" : "SRC_SFDC_PASSWORD",
             "label" : "Salesforce Password",
             "badge" : "Password",
-            "exclude" : true,
+            "exclude" : false,
             "type" : "secret",
             "validators" : {
               "required" : true
@@ -28,7 +28,7 @@
             "name" : "SRC_SFDC_TOKEN",
             "label" : "Salesforce Token",
             "badge" : "Token",
-            "exclude" : true,
+            "exclude" : false,
             "validators" : {
               "required" : true
             }
@@ -74,7 +74,10 @@
             "badge" : "Object",
             "alias" : "Object Name",
             "validators" : {
-              "required" : true
+              "required" : true,
+              "custom" : {
+                "message" : "Expressions may not be retained."
+              }
             },
             "extraInfo" : {
               "loadOnOpen" : true
@@ -156,7 +159,7 @@
               "value" : "$(SRC_SALESFORCE_USERNAME)"
             }, {
               "name" : "password",
-              "value" : "$(SRC_SALESFORCE_PASSWORD)"
+              "value" : "$(SRC_SFDC_PASSWORD)$(SRC_SFDC_TOKEN)"
             } ],
             "properties" : [ {
               "name" : "proxyserver",
