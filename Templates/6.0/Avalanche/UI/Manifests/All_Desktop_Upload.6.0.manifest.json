@@ -253,12 +253,9 @@
             "name" : "FIELD_SEPARATOR",
             "type" : "ecombo",
             "label" : "Field Separator",
-            "defaultValue" : "",
+            "defaultValue" : ",",
             "description" : "Delimiter used in the input files to separate fields.",
             "data" : [ {
-              "label" : "Default (,)",
-              "value" : ","
-            }, {
               "label" : "Comma (,)",
               "value" : ","
             }, {
@@ -328,12 +325,9 @@
             "name" : "QUOTE_CHARACTERS",
             "type" : "ecombo",
             "label" : "Quote Character",
-            "defaultValue" : "",
+            "defaultValue" : "\"",
             "description" : "Character used to quote fields.",
             "data" : [ {
-              "label" : "Default(\")",
-              "value" : "\""
-            }, {
               "label" : "Double Quote (\")",
               "value" : "\""
             }, {
