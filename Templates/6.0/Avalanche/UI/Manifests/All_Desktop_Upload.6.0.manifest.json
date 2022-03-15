@@ -377,13 +377,10 @@
             "name" : "VW_CHARSET",
             "type" : "ecombo",
             "label" : "Source Charset",
-            "defaultValue" : "",
-            "description" : "Character used to quote fields.",
+            "defaultValue" : "ISO88591",
+            "description" : "Source file encoding. This is usually set when you save the file.",
             "valueKey": "value",
             "data" : [ {
-              "label" : "Default",
-              "value" : "ISO88591"
-			  }, {
               "label" : "ISO-8859-1",
               "value" : "ISO88591"
               }, {
