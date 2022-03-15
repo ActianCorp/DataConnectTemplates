@@ -379,28 +379,17 @@
             "label" : "Source Charset",
             "defaultValue" : "",
             "description" : "Character used to quote fields.",
+            "valueKey": "value",
             "data" : [ {
               "label" : "Default",
-              "value" : ""
-            }, {
-              "label" : "Support of Cyrillic on DOS",
-              "value" : "ALT"
-            }, {
-              "label" : "Simplified Chinese - PRC",
-              "value" : "CHINESES"
-                      }, {
-              "label" : "DEC Hebrew",
-              "value" : "HEBREW"
-                      }, {
-              "label" : "ISO 8859-1",
               "value" : "ISO88591"
-                      }, {
-              "label" : "Korean",
-              "value" : "KOREAN"
-                      }, {
-              "label" : "Unicode encoding form UTF-8",
+			  }, {
+              "label" : "ISO-8859-1",
+              "value" : "ISO88591"
+              }, {
+              "label" : "UTF-8",
               "value" : "UTF8"
-                      }],
+            }],
             "dependsOn" : {
               "condition" : [   {
                 "field" : "AVALANCHE_CONNECT_STRING",
