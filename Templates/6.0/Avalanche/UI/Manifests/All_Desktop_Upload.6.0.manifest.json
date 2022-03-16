@@ -377,15 +377,15 @@
             "name" : "VW_CHARSET",
             "type" : "ecombo",
             "label" : "Source Charset",
-            "defaultValue" : "iso-8859-1",
+            "defaultValue" : "ISO-8859-1",
             "description" : "Source file encoding. This is usually set when you save the file.",
             "valueKey": "value",
             "data" : [ {
               "label" : "ISO-8859-1",
-              "value" : "iso-8859-1"
+              "value" : "ISO-8859-1"
               }, {
               "label" : "UTF-8",
-              "value" : "UTF8"
+              "value" : "UTF-8"
             }],
             "dependsOn" : {
               "condition" : [   {
