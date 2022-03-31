@@ -136,7 +136,7 @@
               "label" : "Append",
               "value" : "append"
             }, {
-              "label" : "Replace",
+              "label" : "Create/Replace",
               "value" : "replace"
             }, {
               "label" : "Truncate And Append",
