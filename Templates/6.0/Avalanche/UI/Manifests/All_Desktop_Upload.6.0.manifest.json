@@ -165,16 +165,21 @@
             "dependsOn" : {
               "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
                 "value" : ""
               },{
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
+               "compareOp" : "NOT_EQ",
+               "logicalOp" : "AND",
                 "value" : "none"
+              }, {
+               "field" : "OUTPUT_MODE",
+               "compareOp" : "EQ",
+               "logicalOp" : "AND",
+               "value" : "replace"
               } ],
-              "action" : "DISABLE"
+              "action" : "DISPLAY"
             }
           }, {
             "name" : "AVALANCHE_CREATE_TABLE_QUERY",
