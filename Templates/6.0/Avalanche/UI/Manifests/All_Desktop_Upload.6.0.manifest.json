@@ -182,7 +182,12 @@
                 "field" : "create_table_query_checkbox",
                  "logicalOp" : "AND",
                 "value" : "true"
-              } ],
+               },{
+                "field" : "OUTPUT_MODE",
+                "compareOp" : "EQ",
+                "logicalOp" : "AND",
+                "value" : "replace"}
+             ],
               "action" : "DISPLAY"
             }
            },{
