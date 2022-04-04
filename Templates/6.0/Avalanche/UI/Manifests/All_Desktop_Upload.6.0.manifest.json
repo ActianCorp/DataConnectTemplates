@@ -164,19 +164,8 @@
             "description" : "Specify a create table file to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above.",
             "dependsOn" : {
               "condition" : [  {
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
-                "value" : ""
-              },{
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
-                "value" : "none"
-              }, {
                "field" : "OUTPUT_MODE",
                "compareOp" : "EQ",
-               "logicalOp" : "AND",
                "value" : "replace"
               } ],
               "action" : "DISPLAY"
@@ -193,11 +182,6 @@
                 "field" : "create_table_query_checkbox",
                  "logicalOp" : "AND",
                 "value" : "true"
-              },{
-                "field" : "OUTPUT_MODE",
-                "compareOp" : "EQ",
-                "logicalOp" : "AND",
-                "value" : "replace"
               } ],
               "action" : "DISPLAY"
             }
