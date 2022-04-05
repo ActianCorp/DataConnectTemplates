@@ -20,6 +20,7 @@
             "label" : "Select Avalanche Warehouse",
             "badge" : "Warehouse",
             "type" : "combo",
+            "valueKey" : "value",
             "data" : {
               "api_provider" : "actian",
               "uri" : "warehouse-list",
