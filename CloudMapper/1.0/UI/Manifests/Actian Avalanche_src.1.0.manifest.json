@@ -41,6 +41,7 @@
           }, {
             "name" : "SRC_AVALANCHE_USERNAME",
             "label" : "Username",
+            "required" : true,
             "defaultValue" : "",
             "description" : "Avalanche database username used to connect to the database.",
             "dependsOn" : {

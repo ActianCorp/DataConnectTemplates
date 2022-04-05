@@ -41,6 +41,7 @@
           }, {
             "name" : "TRG_AVALANCHE_USERNAME",
             "label" : "Username",
+            "required" : true,
             "defaultValue" : "",
             "description" : "Avalanche database username used to connect to the database.",
             "dependsOn" : {
@@ -192,6 +193,7 @@
             "name" : "TRG_AVALANCHE_OUTPUT_MODE",
             "label" : "Output Mode",
             "type" : "combo",
+            "valueKey": "value",
             "defaultValue" : "APPEND",
             "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nTruncate & Append: Truncates the table before inserting.\nReplace: Drops & Creates the table",
             "data" : [ {
@@ -266,6 +268,18 @@
             "value" : "",
             "encryptValue" : false,
             "description" : "Optional. Use single sign-on for connecting to Avalanche target."
+          }, {
+            "id" : 7,
+            "name" : "AVALANCHE_TABLE_NEW_OR_EXISTING",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Optional for running the configuration. However, DO NOT edit or delete this macro."
+          }, {
+            "id" : 8,
+            "name" : "TRG_AVALANCHE_OUTPUT_MODE",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Optional for running the configuration. This macro is only used for displaying the appropriate selection of Output Mode when editing a configuration. Valid values for this macro are: APPEND, DELAPPEND and REPLACE."
           } ]
         }
       } ]
