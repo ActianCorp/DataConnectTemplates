@@ -267,6 +267,12 @@
             "value" : "",
             "encryptValue" : false,
             "description" : "Required. Name of the table in Netsuite."
+          }, {
+            "id" : 10,
+            "name" : "SRC_NETSUITE_AUTH_TYPE",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Optional for running the configuration. However, DO NOT edit or delete this macro."
           } ]
         }
       } ]
