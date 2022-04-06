@@ -131,6 +131,7 @@
             "name" : "OUTPUT_MODE",
             "label" : "Output Mode",
             "type" : "combo",
+            "valueKey" : "value",
             "defaultValue" : "append",
             "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nDelete & Append: Truncates the table before inserting.\nReplace: Drops & Creates the table",
             "data" : [ {
