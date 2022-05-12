@@ -561,9 +561,9 @@
           }, {
             "name" : "TIMEZONE",
             "type" : "ecombo",
-            "label" : "Sets timezone for time format or timestamp format.",
+            "label" : "Timezone Format",
             "defaultValue" : "FALSE",
-            "description" : "Yo Dawg, is this timezoney?",
+            "description" : "Sets timezone for time format or timestamp format.",
             "data" : [ {
               "label" : "False",
               "value" : "FALSE"
