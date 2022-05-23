@@ -265,10 +265,10 @@
               "value" : "|"
             }, {
               "label" : "Tab",
-              "value" : "tab"
+              "value" : "\t"
             }, {
               "label" : "Space",
-              "value" : "space"
+              "value" : " "
             } ],
             "dependsOn" : {
               "condition" : [  {
