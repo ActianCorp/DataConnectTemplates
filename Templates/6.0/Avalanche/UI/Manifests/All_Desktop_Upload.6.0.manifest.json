@@ -106,7 +106,7 @@
             }
           }, {
             "name" : "AVALANCHE_TABLE",
-            "label" : "Table",
+            "label" : "Table Name",
             "validators" : {
               "required" : true
             },
@@ -114,17 +114,11 @@
             "defaultValue" : "",
             "dependsOn" : {
               "condition" : [  {
-                "field" : "AVALANCHE_CONNECT_STRING",
+                "field" : "LOAD_TYPE",
                "compareOp" : "EQ",
-               "logicalOp" : "OR",
-                "value" : ""
-              },{
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
-                "value" : "none"
-              } ],
-              "action" : "DISABLE"
+                "value" : "false"
+              }],
+              "action" : "DISPLAY"
             }
           }, {
             "name" : "OUTPUT_MODE",
@@ -132,6 +126,7 @@
             "type" : "combo",
             "defaultValue" : "append",
             "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nDelete & Append: Truncates the table before inserting.\nReplace: Drops & Creates the table",
+            "valueKey": "value",
             "data" : [ {
               "label" : "Append",
               "value" : "append"
@@ -144,45 +139,34 @@
             } ],
             "dependsOn" : {
               "condition" : [  {
+                "field" : "LOAD_TYPE",
+                "compareOp" : "EQ",
+                "value" : "false"
+              }],
+              "action" : "DISPLAY"
+            }
+          },   {
+            "name" : "LOAD_TYPE",
+            "label" : "Use CREATE TABLE query instead?",
+            "type" : "radio",
+            "defaultValue" : "false",
+            "description" : "Either Use Query File to Create/Replace table or use other option for append to existing table or to allow service to determine schema.",
+            "dependsOn" : {
+              "condition" : [  {
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
+                "compareOp" : "EQ",
+                "logicalOp" : "OR",
                 "value" : ""
               },{
                 "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "EQ",
-               "logicalOp" : "OR",
+                "compareOp" : "EQ",
+                "logicalOp" : "OR",
                 "value" : "none"
               } ],
               "action" : "DISABLE"
             }
-          },  {
-            "name" : "create_table_query_checkbox",
-            "exclude" : true,
-            "label" : "Specify Table Creation File",
-            "type" : "checkbox",
-            "description" : "Specify a create table file to use for creating the table. Make sure partitioning is specified. Table name in the statement should match the table name above.",
-            "dependsOn" : {
-              "condition" : [  {
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
-                "value" : ""
-              },{
-                "field" : "AVALANCHE_CONNECT_STRING",
-               "compareOp" : "NOT_EQ",
-               "logicalOp" : "AND",
-                "value" : "none"
-              }, {
-               "field" : "OUTPUT_MODE",
-               "compareOp" : "EQ",
-               "logicalOp" : "AND",
-               "value" : "replace"
-              } ],
-              "action" : "DISPLAY"
-            }
-          }, {
-            "name" : "AVALANCHE_CREATE_TABLE_QUERY",
+          },{
+           "name" : "AVALANCHE_CREATE_TABLE_QUERY",
             "label" : "Create Table Query",
             "type" : "file",
             "extraInfo" : {
@@ -190,14 +174,9 @@
             },
             "dependsOn" : {
               "condition" : [ {
-                "field" : "create_table_query_checkbox",
+                "field" : "LOAD_TYPE",
                 "value" : "true"
-               },{
-                "field" : "OUTPUT_MODE",
-                "compareOp" : "EQ",
-                "logicalOp" : "AND",
-                "value" : "replace"
-               } ],
+                            } ],
               "action" : "DISPLAY"
             }
            },{
@@ -263,12 +242,10 @@
             "name" : "FIELD_SEPARATOR",
             "type" : "ecombo",
             "label" : "Field Separator",
-            "defaultValue" : "",
+            "defaultValue" : ",",
             "description" : "Delimiter used in the input files to separate fields.",
+            "valueKey": "value",
             "data" : [ {
-              "label" : "Auto-Detect",
-              "value" : ""
-            }, {
               "label" : "Comma (,)",
               "value" : ","
             }, {
@@ -301,6 +278,7 @@
             "label" : "Record Separator",
             "defaultValue" : "",
             "description" : "Delimiter used in the input files to separate records.",
+            "valueKey": "value",
             "data" : [ {
               "label" : "Auto-Detect",
               "value" : ""
@@ -338,17 +316,18 @@
             "name" : "QUOTE_CHARACTERS",
             "type" : "ecombo",
             "label" : "Quote Character",
-            "defaultValue" : "",
+            "defaultValue" : "\"",
             "description" : "Character used to quote fields.",
-            "data" : [ {
-              "label" : "Auto-Detect",
-              "value" : ""
-            }, {
+            "valueKey": "value",
+            "data" : [  {
               "label" : "Double Quote (\")",
               "value" : "\""
             }, {
               "label" : "Single Quote (')",
               "value" : "'"
+                      }, {
+              "label" : "Fields Unquoted",
+              "value" : ""
                       }],
             "dependsOn" : {
               "condition" : [   {
@@ -417,6 +396,7 @@
             "label" : "Truncation Handling",
             "defaultValue" : "ERROR",
             "description" : "Action transformation should take upon encountering a trunction incident.",
+            "valueKey": "value",
             "data" : [ {
               "label" : "Error",
               "value" : "ERROR"
@@ -447,6 +427,7 @@
             "label" : "Source Compressed",
             "defaultValue" : "FALSE",
             "description" : "Indicates if file being loaded is compressed, supported compressions '.gz' and '.gunzip'.",
+            "valueKey": "value",
             "data" : [ {
               "label" : "False",
               "value" : "FALSE"
@@ -547,8 +528,8 @@
           }, {
             "name" : "SAMPLE_RECORDS",
             "label" : "Data Sample Size",
-            "defaultValue" : "50000",
-            "description" : "Number of records analyzed to create table schema.",
+            "defaultValue" : "All",
+            "description" : "Number of records analyzed to create table schema. (Only for use without a Create Table file.)",
             "dependsOn" : {
               "condition" : [   {
                 "field" : "AVALANCHE_CONNECT_STRING",
@@ -560,15 +541,21 @@
                 "compareOp" : "EQ",
                 "logicalOp" : "OR",
                 "value" : "none"
-              } ],
+              },{
+                "field" : "LOAD_TYPE",
+                "compareOp" : "EQ",
+                "logicalOp" : "OR",
+                "value" : "true"
+                            } ],
               "action" : "DISABLE"
             }
           }, {
             "name" : "TIMEZONE",
             "type" : "ecombo",
-            "label" : "Timezone Format",
+            "label" : "Sets timezone for time format or timestamp format.",
             "defaultValue" : "FALSE",
-            "description" : "Sets timezone for time format or timestamp format.",
+            "description" : "Yo Dawg, is this timezoney?",
+            "valueKey": "value",
             "data" : [ {
               "label" : "False",
               "value" : "FALSE"
