@@ -552,7 +552,7 @@
           }, {
             "name" : "TIMEZONE",
             "type" : "ecombo",
-            "label" : "Sets timezone for time format or timestamp format.",
+            "label" : "Timezone Format",
             "defaultValue" : "FALSE",
             "description" : "Sets timezone for time format or timestamp format.",
             "valueKey": "value",
