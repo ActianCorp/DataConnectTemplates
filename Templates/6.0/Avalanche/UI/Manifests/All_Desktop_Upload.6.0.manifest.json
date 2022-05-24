@@ -253,10 +253,10 @@
               "value" : "|"
             }, {
               "label" : "Tab",
-              "value" : "tab"
+              "value" : "\t"
             }, {
               "label" : "Space",
-              "value" : "space"
+              "value" : " "
             } ],
             "dependsOn" : {
               "condition" : [  {
@@ -554,7 +554,7 @@
             "type" : "ecombo",
             "label" : "Sets timezone for time format or timestamp format.",
             "defaultValue" : "FALSE",
-            "description" : "Yo Dawg, is this timezoney?",
+            "description" : "Sets timezone for time format or timestamp format.",
             "valueKey": "value",
             "data" : [ {
               "label" : "False",
