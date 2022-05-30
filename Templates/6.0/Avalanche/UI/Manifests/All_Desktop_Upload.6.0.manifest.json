@@ -108,7 +108,9 @@
             "name" : "AVALANCHE_TABLE",
             "label" : "Table Name",
             "validators" : {
-              "required" : true
+              "required" : true,
+              "pattern" : "^[a-zA-Z][a-zA-Z0-9.,$;]*$",
+              "minlength" : 3
             },
             "description" : "Avalanche table name where data will be written to.",
             "defaultValue" : "",
