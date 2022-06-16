@@ -32,8 +32,8 @@
             "description" : "List of warehouses which exist in [AWS|Microsoft Azure|Google Cloud].",
             "defaultValue" : ""
           }, {
-            "name" : "use_sso_checkbox",
-            "exclude" : true,
+            "name" : "AVALANCHE_SSO",
+            "exclude" : false,
             "label" : "Run As Current User",
            "defaultValue" : true,
             "type" : "checkbox",
@@ -59,7 +59,7 @@
                "logicalOp" : "AND",
                 "value" : "none"
               },{
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               } ],
@@ -79,7 +79,7 @@
                "logicalOp" : "AND",
                 "value" : "none"
               },{
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               } ],
@@ -93,7 +93,7 @@
             "defaultValue" : true,
             "dependsOn" : {
               "condition" : [ {
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               },{
@@ -255,10 +255,10 @@
               "value" : "|"
             }, {
               "label" : "Tab",
-              "value" : "\t"
+              "value" : "tab"
             }, {
               "label" : "Space",
-              "value" : " "
+              "value" : "space"
             } ],
             "dependsOn" : {
               "condition" : [  {
@@ -554,7 +554,7 @@
           }, {
             "name" : "TIMEZONE",
             "type" : "ecombo",
-            "label" : "Timezone Format",
+            "label" : "Sets timezone for time format or timestamp format.",
             "defaultValue" : "FALSE",
             "description" : "Sets timezone for time format or timestamp format.",
             "valueKey": "value",
