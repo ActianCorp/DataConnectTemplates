@@ -32,7 +32,7 @@
             "description" : "List of warehouses which exist in [AWS|Microsoft Azure|Google Cloud].",
             "defaultValue" : ""
           }, {
-            "name" : "AVALANCHE_SSO",
+            "name" : "use_sso_checkbox",
             "exclude" : false,
             "label" : "Run As Current User",
            "defaultValue" : true,
