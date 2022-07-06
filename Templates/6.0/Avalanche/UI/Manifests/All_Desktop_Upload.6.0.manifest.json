@@ -59,7 +59,7 @@
                "logicalOp" : "AND",
                 "value" : "none"
               },{
-                "field" : "AVALANCHE_SSO",
+                "field" : "use_sso_checkbox",
                "logicalOp" : "AND",
                 "value" : "false"
               } ],
@@ -79,7 +79,7 @@
                "logicalOp" : "AND",
                 "value" : "none"
               },{
-                "field" : "AVALANCHE_SSO",
+                "field" : "use_sso_checkbox",
                "logicalOp" : "AND",
                 "value" : "false"
               } ],
@@ -93,7 +93,7 @@
             "defaultValue" : true,
             "dependsOn" : {
               "condition" : [ {
-                "field" : "AVALANCHE_SSO",
+                "field" : "use_sso_checkbox",
                "logicalOp" : "AND",
                 "value" : "false"
               },{
