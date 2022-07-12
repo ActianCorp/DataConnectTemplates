@@ -32,7 +32,7 @@
             "description" : "List of warehouses which exist in [AWS|Microsoft Azure|Google Cloud].",
             "defaultValue" : ""
           }, {
-            "name" : "use_sso_checkbox",
+            "name" : "AVALANCHE_SSO",
             "exclude" : true,
             "label" : "Run As Current User",
            "defaultValue" : true,
@@ -59,7 +59,7 @@
                "logicalOp" : "AND",
                 "value" : "none"
               },{
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               } ],
@@ -79,7 +79,7 @@
                "logicalOp" : "AND",
                 "value" : "none"
               },{
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               } ],
@@ -93,7 +93,7 @@
             "defaultValue" : true,
             "dependsOn" : {
               "condition" : [ {
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               },{
