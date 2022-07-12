@@ -276,13 +276,10 @@
             "name" : "RECORD_SEPARATOR",
             "type" : "ecombo",
             "label" : "Record Separator",
-            "defaultValue" : "",
+            "defaultValue" : "CR-LF",
             "description" : "Delimiter used in the input files to separate records.",
             "valueKey": "value",
-            "data" : [ {
-              "label" : "Auto-Detect",
-              "value" : ""
-            }, {
+            "data" : [{
               "label" : "CR-LF",
               "value" : "CR-LF"
             }, {
@@ -291,9 +288,6 @@
             }, {
               "label" : "LF-CR",
               "value" : "LF-CR"
-            }, {
-              "label" : "CR",
-              "value" : "CR"
             }, {
               "label" : "FF",
               "value" : "FF"
