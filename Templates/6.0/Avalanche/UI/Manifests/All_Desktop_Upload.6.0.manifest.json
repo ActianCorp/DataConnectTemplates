@@ -32,8 +32,8 @@
             "description" : "List of warehouses which exist in [AWS|Microsoft Azure|Google Cloud].",
             "defaultValue" : ""
           }, {
-            "name" : "use_sso_checkbox",
-            "exclude" : false,
+            "name" : "AVALANCHE_SSO",
+            "exclude" : true,
             "label" : "Run As Current User",
            "defaultValue" : true,
             "type" : "checkbox",
@@ -59,7 +59,7 @@
                "logicalOp" : "AND",
                 "value" : "none"
               },{
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               } ],
@@ -79,7 +79,7 @@
                "logicalOp" : "AND",
                 "value" : "none"
               },{
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               } ],
@@ -93,7 +93,7 @@
             "defaultValue" : true,
             "dependsOn" : {
               "condition" : [ {
-                "field" : "use_sso_checkbox",
+                "field" : "AVALANCHE_SSO",
                "logicalOp" : "AND",
                 "value" : "false"
               },{
@@ -108,9 +108,7 @@
             "name" : "AVALANCHE_TABLE",
             "label" : "Table Name",
             "validators" : {
-              "required" : true,
-              "pattern" : "^[a-zA-Z][a-zA-Z0-9.,$;]*$",
-              "minlength" : 3
+              "required" : true
             },
             "description" : "Avalanche table name where data will be written to.",
             "defaultValue" : "",
@@ -278,13 +276,10 @@
             "name" : "RECORD_SEPARATOR",
             "type" : "ecombo",
             "label" : "Record Separator",
-            "defaultValue" : "",
+            "defaultValue" : "CR-LF",
             "description" : "Delimiter used in the input files to separate records.",
             "valueKey": "value",
-            "data" : [ {
-              "label" : "Auto-Detect",
-              "value" : ""
-            }, {
+            "data" : [{
               "label" : "CR-LF",
               "value" : "CR-LF"
             }, {
@@ -293,9 +288,6 @@
             }, {
               "label" : "LF-CR",
               "value" : "LF-CR"
-            }, {
-              "label" : "CR",
-              "value" : "CR"
             }, {
               "label" : "FF",
               "value" : "FF"
