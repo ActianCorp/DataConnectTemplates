@@ -24,7 +24,7 @@
               "api_provider" : "actian",
               "uri" : "warehouse-list",
               "valueProperty" : "odbc",
-              "filterValue" : "Azure,Google"
+              "filterValue" : "Azure,Google,AWS"
             },
             "validators" : {
               "required" : true
@@ -33,11 +33,11 @@
             "defaultValue" : ""
           }, {
             "name" : "AVALANCHE_SSO",
-            "exclude" : true,
+            "exclude" : false,
             "label" : "Run As Current User",
            "defaultValue" : true,
             "type" : "checkbox",
-            "description" : "Run the upload as the current user and into their namespace.  Uncheck to manually input Avalanche Credentials.",
+            "description" : "Run the upload as the current user and into their namespace.  Uncheck to manually input Avalanche credentials.",
             "dependsOn" : {
               "condition" : [ {
                 "field" : "AVALANCHE_CONNECT_STRING",
@@ -107,10 +107,12 @@
           }, {
             "name" : "AVALANCHE_TABLE",
             "label" : "Table Name",
+            "description" : "Avalanche table name to where data will be written.",
             "validators" : {
-              "required" : true
+              "required" : true,
+              "pattern" : "^[a-zA-Z][a-zA-Z0-9.,_$;]*$",
+              "minlength" : 3
             },
-            "description" : "Avalanche table name where data will be written to.",
             "defaultValue" : "",
             "dependsOn" : {
               "condition" : [  {
@@ -125,7 +127,7 @@
             "label" : "Output Mode",
             "type" : "combo",
             "defaultValue" : "append",
-            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nTruncate And Append: Truncates the table before inserting.\nCreate/Replace: Drops & Creates the table",
+            "description" : "Append: Inserts the records. If the table doesn't exist, it will be created.\nTruncate and Append: Truncates the table before inserting.\nCreate/Replace: Drops & Creates the table",
             "valueKey": "value",
             "data" : [ {
               "label" : "Append",
@@ -135,7 +137,7 @@
               "value" : "replace"
             }, {
               "label" : "Truncate And Append",
-              "value" : "truncate"
+              "value" : "delete_append"
             } ],
             "dependsOn" : {
               "condition" : [  {
@@ -170,7 +172,8 @@
             "label" : "Create Table Query",
             "type" : "file",
             "extraInfo" : {
-              "filePrefix" : true
+              "filePrefix" : true,
+              "filter" : ".txt,.sql"
             },
             "dependsOn" : {
               "condition" : [ {
@@ -253,10 +256,10 @@
               "value" : "|"
             }, {
               "label" : "Tab",
-              "value" : "\t"
+              "value" : "tab"
             }, {
               "label" : "Space",
-              "value" : " "
+              "value" : "space"
             } ],
             "dependsOn" : {
               "condition" : [  {
@@ -279,7 +282,7 @@
             "defaultValue" : "CR-LF",
             "description" : "Delimiter used in the input files to separate records.",
             "valueKey": "value",
-            "data" : [{
+            "data" : [ {
               "label" : "CR-LF",
               "value" : "CR-LF"
             }, {
@@ -288,6 +291,9 @@
             }, {
               "label" : "LF-CR",
               "value" : "LF-CR"
+            }, {
+              "label" : "CR",
+              "value" : "CR"
             }, {
               "label" : "FF",
               "value" : "FF"
@@ -341,7 +347,7 @@
             "name" : "VW_SUBSTITUTE",
             "label" : "Character Substitute",
             "defaultValue" : "*",
-            "description" : "If Avalanche encounters an illegal character while trying to load, it will substitute this character for the illegal character and continue loading",
+            "description" : "If Avalanche encounters an illegal character while trying to load, it will substitute this character for the illegal character and continue loading.",
             "dependsOn" : {
               "condition" : [   {
                 "field" : "AVALANCHE_CONNECT_STRING",
@@ -411,34 +417,6 @@
                 "field" : "AVALANCHE_CONNECT_STRING",
                "compareOp" : "EQ",
                "logicalOp" : "OR",
-                "value" : "none"
-              } ],
-              "action" : "DISABLE"
-            }
-          }, {
-            "name" : "COMPRESSED",
-            "type" : "ecombo",
-            "label" : "Source Compressed",
-            "defaultValue" : "FALSE",
-            "description" : "Indicates if file being loaded is compressed, supported compressions '.gz' and '.gunzip'.",
-            "valueKey": "value",
-            "data" : [ {
-              "label" : "False",
-              "value" : "FALSE"
-            }, {
-              "label" : "True",
-              "value" : "TRUE"
-            }],
-            "dependsOn" : {
-              "condition" : [   {
-                "field" : "AVALANCHE_CONNECT_STRING",
-                "compareOp" : "EQ",
-                "logicalOp" : "OR",
-                "value" : ""
-              },{
-                "field" : "AVALANCHE_CONNECT_STRING",
-                "compareOp" : "EQ",
-                "logicalOp" : "OR",
                 "value" : "none"
               } ],
               "action" : "DISABLE"
@@ -546,7 +524,7 @@
           }, {
             "name" : "TIMEZONE",
             "type" : "ecombo",
-            "label" : "Timezone Format",
+            "label" : "Sets timezone for time format or timestamp format.",
             "defaultValue" : "FALSE",
             "description" : "Sets timezone for time format or timestamp format.",
             "valueKey": "value",
