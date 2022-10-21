@@ -374,7 +374,7 @@
               "value" : "ISO-8859-1"
               }, {
               "label" : "UTF-8",
-              "value" : "UTF-8"
+              "value" : "UTF8"
             }],
             "dependsOn" : {
               "condition" : [   {
