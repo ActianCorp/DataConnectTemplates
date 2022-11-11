@@ -24,7 +24,7 @@
               "api_provider" : "actian",
               "uri" : "warehouse-list",
               "valueProperty" : "odbc",
-              "filterValue" : "Azure,Google"
+              "filterValue" : "Azure,Google,AWS"
             },
             "validators" : {
               "required" : true
