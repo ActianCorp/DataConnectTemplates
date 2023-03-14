@@ -128,18 +128,24 @@
             "description" : "Required. Source Salesforce username"
           }, {
             "id" : 2,
-            "name" : "SRC_SALESFORCE_PASSWORD",
+            "name" : "SRC_SFDC_PASSWORD",
             "value" : "",
             "encryptValue" : false,
             "description" : "Required. Source Salesforce password"
           }, {
             "id" : 3,
+            "name" : "SRC_SFDC_TOKEN",
+            "value" : "",
+            "encryptValue" : false,
+            "description" : "Required. Source Salesforce token"
+          }, {
+            "id" : 4,
             "name" : "SRC_SALESFORCE_TABLE",
             "value" : "",
             "encryptValue" : false,
             "description" : "Required. Name of the source table or entity in Salesforce"
           }, {
-            "id" : 4,
+            "id" : 5,
             "name" : "SRC_SALESFORCE_SANDBOX_MODE",
             "value" : "True",
             "encryptValue" : false,

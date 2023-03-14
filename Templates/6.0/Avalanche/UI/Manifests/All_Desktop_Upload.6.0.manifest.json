@@ -500,7 +500,7 @@
           }, {
             "name" : "AVALANCHE_CREATE_TABLE_OPTIONS",
             "label" : "Advanced Create Table Options",
-            "defaultValue" : "",
+            "defaultValue" : "WITH PARTITION = (AUTOMATIC DEFAULT PARTITIONS)",
             "description" : "Use this option when you don't want to build the whole query but just want to specify options to pass in the \"with\" clause of create table query. This macro is ignored if AVALANCHE_CREATE_TABLE_QUERY macro is defined. Make sure partitioning is specified.",
             "dependsOn" : {
               "condition" : [   {
