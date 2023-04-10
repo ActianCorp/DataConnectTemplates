@@ -200,6 +200,9 @@
             "validators" : {
               "required" : true
             },
+            "extraInfo":{
+              "multi": true
+           },
             "defaultValue" : "",
             "dependsOn" : {
               "condition" : [  {
