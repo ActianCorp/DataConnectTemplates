@@ -110,7 +110,7 @@
               {
                 "name": "AVALANCHE_TABLE",
                 "label": "Table Name (Type to search or to create a new table)",
-                "description": "A new table will be created with the provided name and all data from your selected file will be added to it. Enter the name of an existing data table if you wish to update an existing table.",
+                "description": "A new table will be created with the provided name and all data from your selected file will be added to it. Enter the name of an existing data table if you wish to update an existing table. Table name cannot start with a number.",
                 "type": "combo",
                 "defaultValue": "",
                 "extraInfo": {
@@ -127,7 +127,7 @@
                 },
                 "validators": {
                   "required": true,
-                  "pattern": "^[a-zA-Z][a-zA-Z0-9.,_$@#-;]*$"
+                  "pattern": "^[a-zA-Z\"][a-zA-Z0-9.,_$@#-;\"]*$"
                 },
                 "dependsOn": {
                   "condition": [
