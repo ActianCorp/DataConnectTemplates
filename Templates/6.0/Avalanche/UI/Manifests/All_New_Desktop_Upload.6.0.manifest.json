@@ -471,36 +471,6 @@
                   ],
                   "action": "DISPLAY"
                 }
-              },
-              {
-                "name": "COMPRESSED_FILE",
-                "label": "Is this a compressed file?",
-                "type": "radio",
-                "defaultValue": "false",
-                "description": "Selected option indicates if your file has a compressed format. This information will help Avalanche accurately read your file. Avalanche only supports compressions \".gz\" and \".gunzip\" at this time.",
-                "dependsOn": {
-                  "condition": [
-                    {
-                      "field": "AVALANCHE_CREATE_TABLE_QUERY",
-                      "compareOp": "NOT_EQ",
-                      "logicalOp": "OR",
-                      "value": ""
-                    },
-                    {
-                      "field": "OUTPUT_MODE",
-                      "compareOp": "NOT_EQ",
-                      "logicalOp": "OR",
-                      "value": ""
-                    },
-                    {
-                      "field": "LOAD_TYPE",
-                      "compareOp": "NOT_EQ",
-                      "logicalOp": "OR",
-                      "value": ""
-                    }
-                  ],
-                  "action": "DISPLAY"
-                }
               }
             ]
           },
